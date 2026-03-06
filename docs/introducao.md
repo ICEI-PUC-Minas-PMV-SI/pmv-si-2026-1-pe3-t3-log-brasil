@@ -36,4 +36,6 @@ A crescente competitividade no setor logístico exige que as empresas adotem sol
 
 ## 1.4. Público alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
+Entregadores: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis. Separadores de carga: profissionais da área de expedição que organizam e preparam os pedidos para transporte. Utilizam o sistema para consultar informações sobre pedidos, rotas e destino das mercadorias. Operadores de monitoramento logístico: responsáveis pelo acompanhamento das entregas em tempo real, controle de rotas e registro de ocorrências. Normalmente possuem maior familiaridade com sistemas de gestão e utilizam o sistema em computadores dentro do ambiente operacional da empresa.
+
+Dessa forma, o sistema deve ser projetado considerando diferentes níveis de acesso e complexidade de uso, garantindo que cada perfil de usuário consiga utilizar as funcionalidades necessárias de forma clara, eficiente e adequada às suas atividades dentro da operação logística.
