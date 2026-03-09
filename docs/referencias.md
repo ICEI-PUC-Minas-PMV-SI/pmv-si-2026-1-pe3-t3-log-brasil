@@ -1,5 +1,5 @@
 REIS, Moysés dos Santos Batista dos. Sistemas integrado de logística com ênfase no TMS. In: XII FATECLOG – Gestão da Cadeia de Suprimentos no Agronegócio: desafios e oportunidades no contexto atual, Mogi das Cruzes/SP, 18-19 jun. 2021. Disponível em: <https://ric.cps.sp.gov.br/bitstream/123456789/10886/5/1S2021_Moys%C3%A9s%20dos%20Santos%20Batista%20dos%20Reis_OD1105.pdf>. Acesso em: 04 mar. 2026.
 
-MUNDO LOGISTICA. O impacto revolucionário do TMS na logística. Disponível em: <https://mundologistica.com.br/artigos/impacto-revolucionario-tms-na-logistica>.
+RODRIGUES, Achilles. O impacto revolucionário do TMS na logística. Mundo Logística, 22 abr. 2024. Disponível em: <https://mundologistica.com.br/artigos/impacto-revolucionario-tms-na-logistica>. Acesso em: 04 mar. 2026.
 
-Automação industrial na logística: benefícios e aplicações. Disponível em: <https://www.cobli.co/blog/automacao-industrial-logistica/>. Acesso em: 4 mar. 2026.
+SOARES, Isadora. Automação industrial na logística: benefícios e aplicações. Cobli, 10 nov. 2025. Disponível em: <https://www.cobli.co/blog/automacao-industrial-logistica/>. Acesso em: 04 mar. 2026.
