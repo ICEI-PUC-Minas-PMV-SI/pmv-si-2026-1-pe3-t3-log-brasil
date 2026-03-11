@@ -36,6 +36,10 @@ A crescente competitividade no setor logístico exige que as empresas adotem sol
 
 ## 1.4. Público alvo
 
-Entregadores: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis. Separadores de carga: profissionais da área de expedição que organizam e preparam os pedidos para transporte. Utilizam o sistema para consultar informações sobre pedidos, rotas e destino das mercadorias. Operadores de monitoramento logístico: responsáveis pelo acompanhamento das entregas em tempo real, controle de rotas e registro de ocorrências. Normalmente possuem maior familiaridade com sistemas de gestão e utilizam o sistema em computadores dentro do ambiente operacional da empresa.
+Entregadores: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis. 
+
+Separadores de carga: profissionais da área de expedição que organizam e preparam os pedidos para transporte. Utilizam o sistema para consultar informações sobre pedidos, rotas e destino das mercadorias. 
+
+Operadores de monitoramento logístico: responsáveis pelo acompanhamento das entregas em tempo real, controle de rotas e registro de ocorrências. Normalmente possuem maior familiaridade com sistemas de gestão e utilizam o sistema em computadores dentro do ambiente operacional da empresa.
 
 Dessa forma, o sistema deve ser projetado considerando diferentes níveis de acesso e complexidade de uso, garantindo que cada perfil de usuário consiga utilizar as funcionalidades necessárias de forma clara, eficiente e adequada às suas atividades dentro da operação logística.
