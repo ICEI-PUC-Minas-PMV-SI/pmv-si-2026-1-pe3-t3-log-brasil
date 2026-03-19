@@ -12,16 +12,17 @@ O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Ele se
 ### 3.2.2 Missão do produto
 Gerenciar informações relacionadas às entregas, incluindo cadastro de pedidos, controle de clientes, acompanhamento de status e organização das operações logísticas.
 ### 3.2.3 Limites do produto
-O SCCA não fornece nenhuma forma de avaliação de alunos, pagamento de parcelas do curso, pagamento a professore e agendamentos. O SCCA não contempla o atendimento a vários cursos de Sistemas de Informação de outras unidades da PUC Minas.
+O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
 
 ### 3.2.4 Benefícios do produto
 
 | # | Benefício | Valor para o Cliente |
 |--------------------|------------------------------------|----------------------------------------|
-|1	| Facilidade no cadastro de dados |	Essencial |
-|2 | Facilidade na recuperação de informações | Essencial | 
-|3 | Segurança no cadastro de matrículas | Essencial | 
-|4	| Melhoria na comunicação com os alunos	| Recomendável | 
+|1	| Facilidade no cadastro de entregas e clientes |	Essencial |
+|2 | Agilidade na consulta de informações | Essencial | 
+|3 | Melhor controle do status das entregas | Essencial | 
+|4	| Organização das operações logísticas	| Recomendável | 
+|5	| Redução de erros operacionais	| Essencial | 
 
 ## 3.3 Descrição geral do produto
 
