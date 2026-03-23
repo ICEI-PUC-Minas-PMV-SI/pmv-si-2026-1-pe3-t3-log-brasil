@@ -33,21 +33,40 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 
 ### 3.3.1 Requisitos Funcionais
 
-| Código | Requisito Funcional (Funcionalidade) | Descrição |
-|--------------------|------------------------------------|----------------------------------------|
-| RF1 | Gerenciar Curso de Aperfeiçoamento |	Processamento de Inclusão, Alteração, Exclusão e Consulta de Cursos de Aperfeiçoamento |
-| RF2 |	Gerenciar Professor	| Processamento de Inclusão, Alteração, Exclusão e Consulta de professores |
-| RF3	| Gerenciar Matrícula |	Processamento de Inclusão, Alteração, Exclusão e Consulta de Matrículas de alunos em Cursos de Aperfeiçoamento |
-| ... |	...	| ... |
+| Código | Requisito Funcional | Descrição |
+|--------|--------------------|-----------|
+| RF1 | Gerenciar Clientes | Permitir inclusão, alteração, exclusão e consulta de clientes |
+| RF2 | Gerenciar Pedidos | Permitir inclusão, alteração, exclusão e consulta de pedidos |
+| RF3 | Gerenciar Veículos | Permitir inclusão, alteração, exclusão e consulta de veículos |
+| RF4 | Gerenciar Entregas | Permitir registrar e controlar as entregas realizadas |
+| RF5 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
+| RF6 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
+| RF7 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
+| RF8 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
+| RF9 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
+| RF10 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
+| RF11 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
+| RF12 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
+| RF13 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
+| RF14 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas/Entregadores |
+
 
 ### 3.3.2 Requisitos Não Funcionais
 
-| Código | Requisito Não Funcional (Restrição) |
-|--------------------|------------------------------------|
-| RNF1 | O ambiente operacional a ser utilizado é o Windows XP. |
-| RNF2 | O sistema deverá executar em um computador configurado com uma impressora de tecnologia laser ou de jato de tinta, a ser usada para impressão dos relatórios. |
-| RNF3 |	Segurança	O produto deve restringir o acesso por meio de senhas individuais para o usuário. |
-| ... |	... |	... |
+| Código | Requisito Não Funcional |
+|--------|------------------------|
+| RNF1 | O sistema deverá ser acessado via navegador web |
+| RNF2 | O sistema deverá possuir interface simples e de fácil utilização |
+| RNF3 | O sistema deverá garantir segurança por meio de login e senha |
+| RNF4 | O sistema deverá armazenar os dados de forma segura em banco de dados |
+| RNF5 | Desempenho: consultas principais (lista de pedidos, fretes e entregas) devem responder em tempo adequado para uso operacional. |
+| RNF6 | O sistema deverá ser compatível com os principais navegadores (Chrome, Edge, etc.) |
+| RNF7 | Usabilidade: a interface deve permitir execucao das tarefas principais com fluxo claro e linguagem objetiva. |
+| RNF8 | O sistema deverá permitir fácil manutenção e atualização |
+| RNF9 | O sistema deverá possuir backup periódico dos dados |
+| RNF10 | O sistema deverá garantir integridade das informações armazenadas |
+| RNF11 | O sistema deverá ser responsivo para diferentes tamanhos de tela |
+| RNF12 | O sistema deverá registrar logs básicos de operações realizadas |
 
 ### 3.3.3 Usuários 
 
