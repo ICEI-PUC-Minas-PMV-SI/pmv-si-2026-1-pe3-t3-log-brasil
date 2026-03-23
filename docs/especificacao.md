@@ -7,22 +7,27 @@ Descrever e especificar as necessidades do processo de gestão de entregas que d
 ## 3.2 Escopo do produto
 
 ### 3.2.1 Nome do produto e seus componentes principais
-O produto será denominado SCCA – Sistema de Cadastro de Cursos de Aperfeiçoamento. Ele terá somente um componente (módulo) com os devidos elementos necessários à gestão de cursos.
+O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-se de uma aplicação voltada ao apoio das operações logísticas, sendo composta por módulos responsáveis pelo cadastro de clientes, pedidos e veículos, além de um módulo de controle das entregas. O sistema permitirá registrar, organizar e acompanhar as informações relacionadas às atividades de distribuição, oferecendo uma estrutura simples e eficiente para o gerenciamento das operações.
 
 ### 3.2.2 Missão do produto
-Gerenciar informações sobre a oferta de cursos de aperfeiçoamento, gerenciar a composição das turmas, alunos, professores e matrículas. 
-
+A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
 ### 3.2.3 Limites do produto
-O SCCA não fornece nenhuma forma de avaliação de alunos, pagamento de parcelas do curso, pagamento a professore e agendamentos. O SCCA não contempla o atendimento a vários cursos de Sistemas de Informação de outras unidades da PUC Minas.
+O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
 
 ### 3.2.4 Benefícios do produto
 
-| # | Benefício | Valor para o Cliente |
-|--------------------|------------------------------------|----------------------------------------|
-|1	| Facilidade no cadastro de dados |	Essencial |
-|2 | Facilidade na recuperação de informações | Essencial | 
-|3 | Segurança no cadastro de matrículas | Essencial | 
-|4	| Melhoria na comunicação com os alunos	| Recomendável | 
+| #  | Benefício                                     | Valor para o Cliente |
+|----|-----------------------------------------------|----------------------|
+| 1  | Cadastro rápido de clientes e pedidos         | Essencial            |
+| 2  | Consulta ágil de informações                  | Essencial            |
+| 3  | Controle eficiente das entregas               | Essencial            |
+| 4  | Organização das operações logísticas          | Recomendável         |
+| 5  | Redução de erros no processo                  | Essencial            |
+| 6  | Aumento da produtividade operacional          | Recomendável         |
+| 7  | Visibilidade do andamento das entregas        | Essencial            |
+| 8  | Centralização dos dados logísticos            | Essencial            |
+| 9  | Suporte à tomada de decisão                   | Recomendável         |
+| 10 | Melhoria na qualidade do serviço              | Recomendável         |
 
 ## 3.3 Descrição geral do produto
 
