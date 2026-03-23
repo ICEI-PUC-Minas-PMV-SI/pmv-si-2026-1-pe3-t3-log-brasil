@@ -71,10 +71,14 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 ### 3.3.3 Usuários 
 
 | Ator | Descrição |
-|--------------------|------------------------------------|
-| Coordenador |	Usuário gerente do sistema responsável pelo cadastro e manutenção de cursos de aperfeiçoamento. Possui acesso geral ao sistema. |
-| Secretaria |	Usuário responsável por registros de alunos, professores, turmas e gerência de matrículas. |
-| ... |	... |	... |
+|------|-----------|
+| Administrador | Usuário responsável pelo gerenciamento geral do sistema, incluindo cadastro e manutenção de dados. Possui acesso completo. |
+| Operador Logístico | Usuário responsável pelo cadastro de pedidos, clientes e controle das entregas. |
+| Motorista | Usuário responsável por visualizar suas entregas e atualizar o status das mesmas. |
+| Gestor | Usuário responsável por acompanhar as operações e analisar relatórios das entregas. |
+| Cliente | Usuário que pode consultar o status de suas entregas. |
+| Operador de monitoramento | Usuario responsavel por acompanhar entregas em andamento, tratar excecoes e apoiar replanejamento. |
+
 
 ## 3.4 Modelagem do Sistema
 
