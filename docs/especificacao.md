@@ -52,8 +52,8 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 
 ### 3.3.2 Requisitos Não Funcionais
 
-| Código | Requisito Não Funcional |
-|--------|------------------------|
+| Código | Requisito Não Funcional | Descrição |
+|--------|--------------------|-----------|
 | RNF1 | Acesso Web | Ser acessado via navegador web |
 | RNF2 | Interface Simples | Possuir interface simples e de fácil utilização |
 | RNF3 | Segurança de Acesso | Garantir segurança por meio de login e senha |
@@ -74,7 +74,7 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | Administrador | Usuário responsável pelo gerenciamento geral do sistema, incluindo cadastro e manutenção de dados. Possui acesso completo. |
 | Operador Logístico | Usuário responsável pelo cadastro de pedidos, clientes e controle das entregas. |
 | Motorista | Usuário responsável por visualizar suas entregas e atualizar o status das mesmas. |
-| Gestor | Usuário responsável por acompanhar as operações e analisar relatórios das entregas. |
+| Gestor | Usuário responsável por acompanhar as operações e analisar relatógit pushrios das entregas. |
 | Cliente | Usuário que pode consultar o status de suas entregas. |
 | Operador de monitoramento | Usuario responsavel por acompanhar entregas em andamento, tratar excecoes e apoiar replanejamento. |
 
