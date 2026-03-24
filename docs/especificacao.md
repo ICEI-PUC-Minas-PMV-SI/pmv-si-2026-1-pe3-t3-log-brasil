@@ -1,6 +1,5 @@
 # 3. DOCUMENTO DE ESPECIFICAÇÃO DE REQUISITOS DE SOFTWARE
 
-
 ## 3.1 Objetivos deste documento
 Descrever e especificar as necessidades do processo de gestão de entregas que devem ser atendidas pelo projeto Log Brasil – Sistema de Gestão de Entregas, visando otimizar o controle logístico, o acompanhamento das entregas e a organização das operações de transporte.
 
@@ -39,34 +38,34 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | RF2 | Gerenciar Pedidos | Permitir inclusão, alteração, exclusão e consulta de pedidos |
 | RF3 | Gerenciar Veículos | Permitir inclusão, alteração, exclusão e consulta de veículos |
 | RF4 | Gerenciar Entregas | Permitir registrar e controlar as entregas realizadas |
-| RF5 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
-| RF6 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
-| RF7 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
-| RF8 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
-| RF9 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
-| RF10 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
-| RF11 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
-| RF12 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
-| RF13 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
-| RF14 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas/Entregadores |
+| RF5 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas/Entregadores |
+| RF6 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
+| RF7 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
+| RF8 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
+| RF9 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
+| RF10 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
+| RF11 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
+| RF12 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
+| RF13 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
+| RF14 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
 
 
 ### 3.3.2 Requisitos Não Funcionais
 
 | Código | Requisito Não Funcional |
 |--------|------------------------|
-| RNF1 | O sistema deverá ser acessado via navegador web |
-| RNF2 | O sistema deverá possuir interface simples e de fácil utilização |
-| RNF3 | O sistema deverá garantir segurança por meio de login e senha |
-| RNF4 | O sistema deverá armazenar os dados de forma segura em banco de dados |
-| RNF5 | Desempenho: consultas principais (lista de pedidos, fretes e entregas) devem responder em tempo adequado para uso operacional. |
-| RNF6 | O sistema deverá ser compatível com os principais navegadores (Chrome, Edge, etc.) |
-| RNF7 | Usabilidade: a interface deve permitir execucao das tarefas principais com fluxo claro e linguagem objetiva. |
-| RNF8 | O sistema deverá permitir fácil manutenção e atualização |
-| RNF9 | O sistema deverá possuir backup periódico dos dados |
-| RNF10 | O sistema deverá garantir integridade das informações armazenadas |
-| RNF11 | O sistema deverá ser responsivo para diferentes tamanhos de tela |
-| RNF12 | O sistema deverá registrar logs básicos de operações realizadas |
+| RNF1 | Acesso Web | Ser acessado via navegador web |
+| RNF2 | Interface Simples | Possuir interface simples e de fácil utilização |
+| RNF3 | Segurança de Acesso | Garantir segurança por meio de login e senha |
+| RNF4 | Armazenamento Seguro | Armazenar os dados de forma segura em banco de dados |
+| RNF5 | Desempenho | Responder a consultas principais (lista de pedidos, fretes e entregas) em tempo adequado para uso operacional |
+| RNF6 | Compatibilidade de Navegadores | Ser compatível com os principais navegadores (Chrome, Edge, etc.)|
+| RNF7 | Usabilidade | Permitir execução das tarefas principais com fluxo claro e linguagem objetiva |
+| RNF8 | Manutenibilidade | Permitir fácil manutenção e atualização |
+| RNF9 | Backup de Dados | Possuir backup periódico dos dados |
+| RNF10 | Integridade de Dados | Garantir integridade das informações armazenadas |
+| RNF11 | Responsividade | Responsivo para diferentes tamanhos de tela |
+| RNF12 | Registro de Logs | Registrar logs básicos de operações realizadas |
 
 ### 3.3.3 Usuários 
 
@@ -78,7 +77,6 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | Gestor | Usuário responsável por acompanhar as operações e analisar relatórios das entregas. |
 | Cliente | Usuário que pode consultar o status de suas entregas. |
 | Operador de monitoramento | Usuario responsavel por acompanhar entregas em andamento, tratar excecoes e apoiar replanejamento. |
-
 
 ## 3.4 Modelagem do Sistema
 
