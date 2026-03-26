@@ -10,6 +10,7 @@ O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-
 
 ### 3.2.2 Missão do produto
 A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
+
 ### 3.2.3 Limites do produto
 O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
 
@@ -39,23 +40,25 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | RF3 | Gerenciar Veículos | Permitir inclusão, alteração, exclusão e consulta de veículos |
 | RF4 | Gerenciar Entregas | Permitir registrar e controlar as entregas realizadas |
 | RF5 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas/Entregadores |
-| RF6 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
-| RF7 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
-| RF8 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
-| RF9 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
-| RF10 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
-| RF11 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
-| RF12 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
-| RF13 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
-| RF14 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
-
+| RF6 | Consultar Clientes | Permitir visualizar e consultar clientes cadastrados |
+| RF7 | Consultar Pedidos | Permitir visualizar e consultar pedidos cadastrados |
+| RF8 | Consultar Veículos | Permitir visualizar e consultar veículos cadastrados |
+| RF9 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
+| RF10 | Consultar Motoristas | Permitir visualizar e consultar motoristas cadastrados |
+| RF11 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
+| RF12 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
+| RF13 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
+| RF14 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
+| RF15 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
+| RF16 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
+| RF17 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
 
 ### 3.3.2 Requisitos Não Funcionais
 
 | Código | Requisito Não Funcional | Descrição |
 |--------|--------------------|-----------|
 | RNF1 | Acesso Web | Ser acessado via navegador web |
-| RNF2 | Interface Simples | Possuir interface simples e de fácil utilização |
+| RNF2 | Interface Simples | Possuir interface intuitiva e de fácil utilização |
 | RNF3 | Segurança de Acesso | Garantir segurança por meio de login e senha |
 | RNF4 | Armazenamento Seguro | Armazenar os dados de forma segura em banco de dados |
 | RNF5 | Desempenho | Responder a consultas principais (lista de pedidos, fretes e entregas) em tempo adequado para uso operacional |
@@ -74,7 +77,7 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | Administrador | Usuário responsável pelo gerenciamento geral do sistema, incluindo cadastro e manutenção de dados. Possui acesso completo. |
 | Operador Logístico | Usuário responsável pelo cadastro de pedidos, clientes e controle das entregas. |
 | Motorista | Usuário responsável por visualizar suas entregas e atualizar o status das mesmas. |
-| Gestor | Usuário responsável por acompanhar as operações e analisar relatógit pushrios das entregas. |
+| Gestor | Usuário responsável por acompanhar as operações e analisar relatórios das entregas. |
 | Cliente | Usuário que pode consultar o status de suas entregas. |
 | Operador de monitoramento | Usuario responsavel por acompanhar entregas em andamento, tratar excecoes e apoiar replanejamento. |
 
