@@ -5,7 +5,7 @@ O presente trabalho propõe o desenvolvimento de um sistema TMS com foco na orga
 
 ## 1.1. Problema
 
-Muitas transportadoras e empresas de pequeno e médio porte ainda realizam o controle de fretes, rotas e documentos de forma manual ou utilizando sistemas não integrados. Isso pode gerar problemas como: erros na emissão de documentos, falta de controle, sobre prazos de entrega, dificuldade no acompanhamento de cargas, custos elevados com rotas mal planejadas, falta de integração com sistemas fiscais e logísticos.
+De acordo com Reis e Balducci (2021), a dificuldade em gerenciar as atividades operacionais tem levado as empresas a buscarem melhorias constantes em suas rotinas. A ausência de uma Tecnologia da Informação (TI) efetiva nos processos logísticos afeta diretamente a produtividade, a qualidade do atendimento e o acompanhamento das cargas. Diante dessa defasagem, surge a necessidade de implementação de um TMS, um sistema centralizado que permite ao usuário visualizar e controlar a operação, assegurando a total rastreabilidade dos pedidos e evitando falhas de desempenho no processo de distribuição.
 
 
 Diante disso, surge a necessidade de um sistema centralizado que permita maior controle, automação e segurança nas operações de transporte.
