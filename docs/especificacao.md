@@ -84,77 +84,133 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 ## 3.4 Modelagem do Sistema
 
 ### 3.4.1 Diagrama de Casos de Uso
-Como observado no diagrama de casos de uso da Figura 1, a secretária poderá gerenciar as matrículas e professores no sistema, enquanto o coordenador, além dessas funções, poderá gerenciar os cursos de aperfeiçoamento.
 
-#### Figura 1: Diagrama de Casos de Uso do Sistema.
+O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O **Administrador** concentra funções de configuração e cadastros gerais. O **Operador Logístico** trata de pedidos, fretes, planejamento de rota e atribuição de motorista e veículo. O **Motorista** executa a rota, atualiza status e registra ocorrências e comprovantes. O **Operador de monitoramento** acompanha entregas em andamento e apoia exceções. O **Gestor** consulta painéis e relatórios. O **Cliente** (quando previsto no escopo) consulta o status de seus pedidos.
 
-![dcu](https://github.com/user-attachments/assets/41f6b731-b44e-43aa-911f-423ad6198f47)
- 
+Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, pedidos, veículos, motoristas), operação (frete, rota, atribuição, entrega, status, ocorrências, comprovante), consulta (painel) e gestão (relatórios).
+
+#### Figura 1: Diagrama de Casos de Uso do Sistema Log Brasil.
+
+![Diagrama de Casos de Uso](../src/img/diagrama_casos_de_uso.png)
+
 ### 3.4.2 Descrições de Casos de Uso
 
-Cada caso de uso deve ter a sua descrição representada nesta seção. Exemplo:
+A seguir estão descrições textuais de casos de uso centrais do domínio logístico, alinhados aos requisitos funcionais da Seção 3.3.1.
 
-#### Gerenciar Professor (CSU01)
+#### Gerenciar fretes e planejar rota (CSU01)
 
-Sumário: A Secretária realiza a gestão (inclusão, remoção, alteração e consulta) dos dados sobre professores.
+**Sumário:** O Operador Logístico cria um frete, associa pedidos e define a sequência de entregas (rota) para apoio operacional.
 
-Ator Primário: Secretária.
+**Ator primário:** Operador Logístico.
 
-Ator Secundário: Coordenador.
+**Ator secundário:** Sistema.
 
-Pré-condições: A Secretária deve ser validada pelo Sistema.
+**Pré-condições:** O usuário está autenticado com perfil adequado; existem pedidos cadastrados em situação que permita inclusão em frete.
 
-Fluxo Principal:
+**Fluxo principal:**
 
-1) 	A Secretária requisita manutenção de professores.
-2) 	O Sistema apresenta as operações que podem ser realizadas: inclusão de um novo professor, alteração de um professor, a exclusão de um professor e a consulta de dados de um professor.
-3) 	A Secretária seleciona a operação desejada: Inclusão, Exclusão, Alteração ou Consulta, ou opta por finalizar o caso de uso.
-4) 	Se a Secretária desejar continuar com a gestão de professores, o caso de uso retorna ao passo 2; caso contrário o caso de uso termina.
+1. O Operador Logístico solicita a criação de um novo frete.
+2. O Sistema exibe formulário para dados do frete (identificação, período previsto, observações).
+3. O Operador Logístico informa os dados e confirma.
+4. O Sistema registra o frete e apresenta a opção de associar pedidos.
+5. O Operador Logístico seleciona os pedidos a incluir no frete.
+6. O Sistema valida disponibilidade dos pedidos e associa-os ao frete.
+7. O Operador Logístico define a ordem das paradas (sequência da rota).
+8. O Sistema persiste a sequência e exibe o resumo do frete.
 
-Fluxo Alternativo (3): Inclusão
+**Fluxo alternativo (5–6) – Pedido indisponível:** Se um pedido não puder ser associado (já em outro frete ativo ou status incompatível), o Sistema informa o motivo e o Operador Logístico ajusta a seleção.
 
-a)	A Secretária requisita a inclusão de um professor. <br>
-b)	O Sistema apresenta uma janela solicitando o CPF do professor a ser cadastrado. <br>
-c)	A Secretária fornece o dado solicitado. <br>
-d)	O Sistema verifica se o professor já está cadastrado. Se sim, o Sistema reporta o fato e volta ao início; caso contrário, apresenta um formulário em branco para que os detalhes do professor (Código, Nome, Endereço, CEP, Estado, Cidade, Bairro, Telefone, Identidade, Sexo, Fax, CPF, Data do Cadastro e Observação) sejam incluídos. <br>
-e)	A Secretária fornece os detalhes do novo professor. <br>
-f)	O Sistema verifica a validade dos dados. Se os dados forem válidos, inclui o novo professor e a grade listando os professores cadastrados é atualizada; caso contrário, o Sistema reporta o fato, solicita novos dados e repete a verificação. <br>
+**Pós-condições:** O frete existe, contém pedidos vinculados e possui ordem de rota definida (ou pendente de ajuste posterior).
 
-Fluxo Alternativo (3): Remoção
+#### Atribuir motorista e veículo ao frete (CSU02)
 
-a)	A Secretária seleciona um professor e requisita ao Sistema que o remova. <br>
-b)	Se o professor pode ser removido, o Sistema realiza a remoção; caso contrário, o Sistema reporta o fato. <br>
+**Sumário:** O Operador Logístico vincula motorista e veículo ao frete antes da saída para entrega.
 
-Fluxo Alternativo (3): Alteração
+**Ator primário:** Operador Logístico.
 
-a)	A Secretária altera um ou mais dos detalhes do professor e requisita sua atualização. <br>
-b)	O Sistema verifica a validade dos dados e, se eles forem válidos, altera os dados na lista de professores, caso contrário, o erro é reportado. <br>
- 
-Fluxo Alternativo (3): Consulta
+**Pré-condições:** Frete cadastrado; motorista e veículo cadastrados e aptos ao uso.
 
-a)	A Secretária opta por pesquisar pelo nome ou código e solicita a consulta sobre a lista de professores. <br>
-b)	O Sistema apresenta uma lista professores. <br>
-c)	A Secretária seleciona o professor. <br>
-d)	O Sistema apresenta os detalhes do professor no formulário de professores. <br>
+**Fluxo principal:**
 
-Pós-condições: Um professor foi inserido ou removido, seus dados foram alterados ou apresentados na tela.
+1. O Operador Logístico localiza o frete desejado.
+2. O Operador Logístico solicita atribuição de recursos.
+3. O Sistema exibe listas de motoristas e veículos disponíveis conforme filtros.
+4. O Operador Logístico seleciona um motorista e um veículo e confirma.
+5. O Sistema valida consistência (ex.: veículo ativo, motorista habilitado) e grava a atribuição.
 
-### 3.4.3 Diagrama de Classes 
+**Pós-condições:** O frete fica associado a motorista e veículo para execução.
 
-A Figura 2 mostra o diagrama de classes do sistema. A Matrícula deve conter a identificação do funcionário responsável pelo registro, bem com os dados do aluno e turmas. Para uma disciplina podemos ter diversas turmas, mas apenas um professor responsável por ela.
+#### Atualizar status de entrega (CSU03)
+
+**Sumário:** O Motorista (ou Operador de monitoramento, conforme permissão) altera o status das entregas do frete (por exemplo: pendente, em andamento, concluída, atrasada).
+
+**Atores primários:** Motorista; Operador de monitoramento.
+
+**Pré-condições:** Usuário autenticado; entrega vinculada a frete atribuído ao motorista (quando aplicável).
+
+**Fluxo principal:**
+
+1. O ator acessa a lista de entregas do frete ou do dia.
+2. O ator seleciona uma entrega e solicita alteração de status.
+3. O Sistema exibe os status permitidos para aquela entrega.
+4. O ator escolhe o novo status e confirma.
+5. O Sistema valida a transição, registra data/hora e atualiza o painel.
+
+**Fluxo alternativo – Transição inválida:** O Sistema informa que a mudança não é permitida e mantém o status anterior.
+
+**Pós-condições:** O status da entrega reflete o estado atual da operação.
+
+#### Registrar ocorrência na entrega (CSU04)
+
+**Sumário:** O Motorista ou o Operador de monitoramento registra um imprevisto relacionado à entrega.
+
+**Atores primários:** Motorista; Operador de monitoramento.
+
+**Pré-condições:** Entrega identificável no sistema.
+
+**Fluxo principal:**
+
+1. O ator seleciona a entrega e solicita registro de ocorrência.
+2. O Sistema apresenta formulário (tipo, descrição, data/hora).
+3. O ator preenche e confirma.
+4. O Sistema armazena a ocorrência e a associa à entrega.
+
+**Pós-condições:** A ocorrência fica disponível para consulta no histórico da entrega e em relatórios.
+
+#### Gerar relatório de entregas (CSU05)
+
+**Sumário:** O Gestor gera relatório consolidado de entregas com filtros por período, cliente e status.
+
+**Ator primário:** Gestor.
+
+**Pré-condições:** Usuário autenticado com perfil de Gestor.
+
+**Fluxo principal:**
+
+1. O Gestor acessa a funcionalidade de relatórios.
+2. O Gestor define filtros (período, cliente, status).
+3. O Sistema processa e exibe o relatório ou exportação disponível.
+4. O Gestor pode ajustar filtros e repetir a consulta.
+
+**Pós-condições:** Os dados apresentados correspondem aos critérios informados.
+
+### 3.4.3 Diagrama de Classes
+
+A Figura 2 apresenta o modelo conceitual principal do domínio. Um **Cliente** realiza vários **Pedidos**. Vários pedidos podem ser agrupados em um **Frete**, que possui **Motorista** e **Veículo** atribuídos. Cada vínculo pedido–frete em execução é representado por uma **Entrega**, que possui **status**, pode registrar várias **Ocorrencia** e um **ComprovanteEntrega** quando concluída. Essa estrutura atende aos requisitos de cadastro, fretes, rotas, atribuição, status, ocorrências e comprovante descritos na Seção 3.3.1.
 
 #### Figura 2: Diagrama de Classes do Sistema.
  
-![image](https://github.com/user-attachments/assets/abc7591a-b46f-4ea2-b8f0-c116b60eb24e)
+ ![Diagrama de Classes do Sistema](../src/img/diagrama_classes_dos_sistema.png)
 
-
-### 3.4.4 Descrições das Classes 
+### 3.4.4 Descrições das Classes
 
 | # | Nome | Descrição |
-|--------------------|------------------------------------|----------------------------------------|
-| 1	|	Aluno |	Cadastro de informações relativas aos alunos. |
-| 2	| Curso |	Cadastro geral de cursos de aperfeiçoamento. |
-| 3 |	Matrícula |	Cadastro de Matrículas de alunos nos cursos. |
-| 4 |	Turma |	Cadastro de turmas.
-| 5	|	Professor |	Cadastro geral de professores que ministram as disciplinas. |
-| ... |	... |	... |
+|---|------|-----------|
+| 1 | Cliente | Representa o contratante ou destinatário cadastrado, com dados de identificação, contato e endereço utilizados nos pedidos e entregas. |
+| 2 | Pedido | Solicitação de transporte com origem, destino, prioridade e situação no processo logístico antes ou durante a alocação a um frete. |
+| 3 | Veiculo | Meio de transporte disponível para execução de fretes, com identificação, tipo, capacidade e indicador de uso. |
+| 4 | Motorista | Profissional responsável pela condução e execução das entregas do frete, com dados cadastrais e situação ativa ou inativa. |
+| 5 | Frete | Agrupamento operacional de entregas com sequência de rota planejada e vínculo opcional a motorista e veículo. |
+| 6 | Entrega | Instância operacional de um pedido dentro de um frete, com status ao longo do ciclo (pendente, em andamento, concluída, atrasada, cancelada). |
+| 7 | Ocorrencia | Registro de imprevistos ou observações ligados a uma entrega (tipo, descrição e momento). |
+| 8 | ComprovanteEntrega | Evidência de conclusão da entrega, com nome do recebedor, data/hora e observações, quando aplicável. |
