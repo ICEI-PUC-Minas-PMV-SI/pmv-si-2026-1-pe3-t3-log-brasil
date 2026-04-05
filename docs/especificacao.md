@@ -61,7 +61,7 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 | RNF2 | Interface Simples | Possuir interface intuitiva e de fácil utilização |
 | RNF3 | Segurança de Acesso | Garantir segurança por meio de login e senha |
 | RNF4 | Armazenamento Seguro | Armazenar os dados de forma segura em banco de dados |
-| RNF5 | Desempenho | Responder a consultas principais (lista de pedidos, fretes e entregas) em tempo adequado para uso operacional |
+| RNF5 | Desempenho | Responder a consultas principais (lista de pedidos, fretes e entregas) em um tempo de até dois segundos para uso operacional |
 | RNF6 | Compatibilidade de Navegadores | Ser compatível com os principais navegadores (Chrome, Edge, etc.)|
 | RNF7 | Usabilidade | Permitir execução das tarefas principais com fluxo claro e linguagem objetiva |
 | RNF8 | Manutenibilidade | Permitir fácil manutenção e atualização |
