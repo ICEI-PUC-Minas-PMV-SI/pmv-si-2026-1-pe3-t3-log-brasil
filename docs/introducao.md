@@ -7,10 +7,6 @@ O presente trabalho propõe o desenvolvimento de um sistema TMS com foco na orga
 
 De acordo com Reis e Balducci (2021), a dificuldade em gerenciar as atividades operacionais tem levado as empresas a buscarem melhorias constantes em suas rotinas. A ausência de uma Tecnologia da Informação (TI) efetiva nos processos logísticos afeta diretamente a produtividade, a qualidade do atendimento e o acompanhamento das cargas. Diante dessa defasagem, surge a necessidade de implementação de um TMS, um sistema centralizado que permite ao usuário visualizar e controlar a operação, assegurando a total rastreabilidade dos pedidos e evitando falhas de desempenho no processo de distribuição.
 
-
-Diante disso, surge a necessidade de um sistema centralizado que permita maior controle, automação e segurança nas operações de transporte.
-
-
 ## 1.2. Objetivos do trabalho
 
 Desenvolver um sistema TMS capaz de gerenciar operações de transporte de cargas, promovendo maior organização, controle e eficiência logística.
