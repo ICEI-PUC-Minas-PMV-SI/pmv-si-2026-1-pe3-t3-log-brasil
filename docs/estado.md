@@ -1,16 +1,54 @@
 # 2. ESTADO DA ARTE
-A evolução tecnológica tem provocado mudanças significativas no setor logístico, principalmente no que se refere à gestão de transporte e entregas. Nesse contexto, diversos estudos e publicações têm analisado o impacto da digitalização e da automação na logística, com destaque para o uso de sistemas de gestão de transporte e integração de informações. O levantamento dessas pesquisas permite compreender as soluções existentes e as tendências relacionadas à gestão de entregas, tema central do projeto Log Brasil.
 
-Entre as pesquisas acadêmicas sobre o tema, destaca-se o estudo de Reis e Balducci (2021), desenvolvido no contexto da FATEC, que aborda os sistemas integrados de logística com foco no Transportation Management System (TMS). Segundo os autores, esses sistemas permitem integrar informações relacionadas ao transporte, possibilitando maior controle das operações logísticas, planejamento mais eficiente de rotas e melhor gerenciamento dos custos envolvidos no processo de distribuição. Além disso, os autores destacam que a utilização de sistemas integrados contribui para a rastreabilidade das entregas e para a melhoria do fluxo de informações entre os diferentes setores envolvidos na operação logística.
+O avanço da tecnologia tem transformado a logística tradicional, integrando Sistemas de Gerenciamento de Transporte (TMS), Inteligência Artificial (IA), Internet das Coisas (IoT) e Tecnologia da Informação (TI). Esta seção apresenta uma síntese de estudos recentes, destacando contribuições, desafios e perspectivas para o setor logístico.
 
-De acordo com Rodrigues (2024), o TMS representa uma das principais ferramentas tecnológicas utilizadas na logística moderna, permitindo que empresas tenham maior controle sobre suas operações de transporte. Entre as funcionalidades mais relevantes desses sistemas estão a roteirização de entregas, o monitoramento de veículos, o controle de fretes, a auditoria de custos logísticos e a gestão de documentos relacionados ao transporte. O autor ressalta ainda que a utilização dessas ferramentas possibilita uma tomada de decisão mais estratégica, baseada em dados e indicadores de desempenho.
+1. Integração Estratégica de TMS e Inteligência Artificial
+O estudo aborda a integração entre TMS e IA como estratégia para otimização de processos logísticos, redução de custos e aumento da competitividade. O artigo enfatiza a importância da integração de informações para apoiar a tomada de decisão e melhorar a eficiência operacional.
+Principais contribuições:
+	Demonstra como o TMS atua como ferramenta estratégica na gestão logística.
+	Destaca o papel da IA na melhoria do desempenho e automação de processos.
+	Aponta a integração da informação como diferencial competitivo.
+Referência: Revista Episteme, 2023
 
-Outro aspecto amplamente discutido nas pesquisas atuais refere-se à automação aplicada à logística. Conforme apontado por Soares (2025), a automação industrial e logística tem sido utilizada para aumentar a eficiência operacional, reduzir erros humanos e melhorar a rastreabilidade das operações. Tecnologias como sensores, GPS, sistemas de rastreamento, Internet das Coisas (IoT) e plataformas integradas de gestão têm contribuído para a modernização das cadeias logísticas e para a melhoria do desempenho das operações de transporte e distribuição.
+2. Logística Inteligente: Avanços, Desafios e Perspectivas Futuras
+Este artigo apresenta a logística inteligente (logística 4.0), explorando tecnologias como IoT, Big Data, IA e blockchain. Analisa como essas ferramentas promovem automação, integração de processos e tomada de decisão em tempo real, destacando benefícios e desafios organizacionais.
+Principais contribuições:
+	Mapeamento de tecnologias aplicáveis à logística inteligente.
+	Identificação de oportunidades de redução de custos e aumento da flexibilidade operacional.
+	Discussão de desafios de implementação, como integração de sistemas e segurança da informação.
+Referência: ResearchGate, 2023
 
-Observa-se que tanto pesquisas acadêmicas quanto publicações técnicas apontam benefícios significativos na adoção de sistemas tecnológicos na logística. Entre os principais resultados identificados nas pesquisas estão a redução de custos operacionais, maior controle das entregas, aumento da produtividade e melhoria da qualidade do serviço prestado ao cliente (REIS; BALDUCCI, 2021; RODRIGUES, 2024). Esses fatores evidenciam a importância da utilização de ferramentas digitais para apoiar a gestão logística nas organizações.
+3. Transformação da Logística com Internet das Coisas (IoT)
+Analisa o impacto da IoT na logística, mostrando aplicações em rastreamento de ativos, manutenção preditiva e integração de dados. O estudo também aborda desafios da implementação, como custos, segurança de dados e integração com sistemas legados.
+Principais contribuições:
+	IoT como catalisadora da eficiência logística e rastreabilidade de processos.
+	Melhoria na gestão de inventário e ativos.
+	Identificação de barreiras para adoção tecnológica em larga escala.
+Referência: Seven Publications, 2022
 
-Apesar dos benefícios apontados, alguns autores também destacam desafios relacionados à implementação dessas tecnologias. Entre eles estão o custo de implantação dos sistemas, a necessidade de treinamento das equipes e a adaptação das empresas aos novos processos tecnológicos. Nesse sentido, parte da literatura ressalta que a adoção de sistemas de gestão logística deve considerar a realidade e o porte das organizações, especialmente no caso de pequenas e médias empresas.
+4. Tecnologia da Informação Aplicada à Logística
+O artigo discute o papel da TI na gestão logística, destacando sistemas como WMS, ERP, TMS, RFID e EDI. Demonstra como a TI contribui para controle de estoques, gestão de transporte e decisões estratégicas, além de impactar positivamente a produtividade e eficiência operacional.
+Principais contribuições:
+	Reforça a relevância de sistemas de TI no suporte à logística moderna.
+	Evidencia redução de custos e aumento da produtividade.
+	Fundamenta a necessidade de tecnologias básicas antes da adoção de soluções avançadas.
+Referência: Revista REM, 2021
 
-Outro ponto observado no levantamento bibliográfico é que muitas pesquisas concentram-se em sistemas logísticos amplos, como TMS e WMS, mas ainda há espaço para o desenvolvimento de soluções específicas voltadas à gestão de entregas, especialmente aquelas que integrem cadastro de pedidos, controle de entregas, rastreamento e geração de relatórios gerenciais em uma única plataforma. Dessa forma, percebe-se uma oportunidade de desenvolvimento de sistemas que auxiliem no controle e na organização das operações de transporte.
+5. Transformando a Construção com Inovação na Logística
+Estudo de caso sobre a aplicação de aplicativos digitais na logística urbana de transporte de materiais de construção. O estudo evidencia ganhos em eficiência, sustentabilidade e economia local, destacando como a tecnologia pode modernizar processos específicos do setor.
+Principais contribuições:
+	Demonstração prática de otimização logística por meio de aplicativos digitais.
+	Benefícios na sustentabilidade e economia local.
+	Aplicação de soluções digitais em setores com logística complexa e fragmentada.
+Referência: Produção Online, 2022
 
-Nesse contexto, o projeto Log Brasil busca contribuir para essa área ao propor o desenvolvimento de um sistema de gestão de entregas que permita organizar informações logísticas, acompanhar o status das entregas e fornecer relatórios de apoio à tomada de decisão. A proposta do sistema está alinhada às tendências tecnológicas identificadas na literatura, que apontam a digitalização e a integração de dados como fatores essenciais para a melhoria da eficiência logística.
+6. Gestão do Transporte de Cargas e a Inteligência Artificial
+Pesquisa exploratória sobre o uso de IA em operações de transporte de cargas, indicando impacto positivo no desempenho operacional, embora a moderação da IA sobre a relação entre gestão e desempenho seja limitada. O estudo sugere oportunidades para maior integração tecnológica em redes logísticas fragmentadas.
+Principais contribuições:
+	Avaliação da aplicação prática da IA no transporte de cargas.
+	Identificação de limites na efetividade estatística da IA.
+	Sinaliza oportunidades de inovação em processos logísticos.
+Referência: Revista GIT, 2024
+
+Considerações Finais
+O levantamento bibliográfico evidencia que a integração de TI, IA e IoT transforma a logística, promovendo automação, visibilidade e eficiência operacional. Entretanto, desafios relacionados a custo, segurança, integração e capacitação profissional ainda limitam a implementação plena. O estado da arte aponta oportunidades significativas para desenvolvimento de soluções inovadoras e adaptação tecnológica em diferentes setores.
