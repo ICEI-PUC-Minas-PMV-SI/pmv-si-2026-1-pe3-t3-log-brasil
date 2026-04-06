@@ -1,17 +1,21 @@
 # 3. DOCUMENTO DE ESPECIFICAÇÃO DE REQUISITOS DE SOFTWARE
 
 ## 3.1 Objetivos deste documento
+
 Descrever e especificar as necessidades do processo de gestão de entregas que devem ser atendidas pelo projeto Log Brasil – Sistema de Gestão de Entregas, visando otimizar o controle logístico, o acompanhamento das entregas e a organização das operações de transporte.
 
 ## 3.2 Escopo do produto
 
 ### 3.2.1 Nome do produto e seus componentes principais
+
 O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-se de uma aplicação voltada ao apoio das operações logísticas, sendo composta por módulos responsáveis pelo cadastro de clientes, pedidos e veículos, além de um módulo de controle das entregas. O sistema permitirá registrar, organizar e acompanhar as informações relacionadas às atividades de distribuição, oferecendo uma estrutura simples e eficiente para o gerenciamento das operações.
 
 ### 3.2.2 Missão do produto
+
 A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
 
 ### 3.2.3 Limites do produto
+
 O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
 
 ### 3.2.4 Benefícios do produto
