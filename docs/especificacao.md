@@ -1,21 +1,17 @@
 # 3. DOCUMENTO DE ESPECIFICAÇÃO DE REQUISITOS DE SOFTWARE
 
 ## 3.1 Objetivos deste documento
-
 Descrever e especificar as necessidades do processo de gestão de entregas que devem ser atendidas pelo projeto Log Brasil – Sistema de Gestão de Entregas, visando otimizar o controle logístico, o acompanhamento das entregas e a organização das operações de transporte.
 
 ## 3.2 Escopo do produto
 
 ### 3.2.1 Nome do produto e seus componentes principais
-
 O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-se de uma aplicação voltada ao apoio das operações logísticas, sendo composta por módulos responsáveis pelo cadastro de clientes, pedidos e veículos, além de um módulo de controle das entregas. O sistema permitirá registrar, organizar e acompanhar as informações relacionadas às atividades de distribuição, oferecendo uma estrutura simples e eficiente para o gerenciamento das operações.
 
 ### 3.2.2 Missão do produto
-
 A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
 
 ### 3.2.3 Limites do produto
-
 O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
 
 ### 3.2.4 Benefícios do produto
@@ -88,7 +84,6 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 ## 3.4 Modelagem do Sistema
 
 ### 3.4.1 Diagrama de Casos de Uso
-
 O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O **Administrador** concentra funções de configuração e cadastros gerais. O **Operador Logístico** trata de pedidos, fretes, planejamento de rota e atribuição de motorista e veículo. O **Motorista** executa a rota, atualiza status e registra ocorrências e comprovantes. O **Operador de monitoramento** acompanha entregas em andamento e apoia exceções. O **Gestor** consulta painéis e relatórios. O **Cliente** (quando previsto no escopo) consulta o status de seus pedidos.
 
 Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, pedidos, veículos, motoristas), operação (frete, rota, atribuição, entrega, status, ocorrências, comprovante), consulta (painel) e gestão (relatórios).
@@ -98,11 +93,9 @@ Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, ped
 ![Diagrama de Casos de Uso](../src/img/diagrama_casos_de_uso.png)
 
 ### 3.4.2 Descrições de Casos de Uso
-
 A seguir estão descrições textuais de casos de uso centrais do domínio logístico, alinhados aos requisitos funcionais da Seção 3.3.1.
 
 #### Gerenciar fretes e planejar rota (CSU01)
-
 **Sumário:** O Operador Logístico cria um frete, associa pedidos e define a sequência de entregas (rota) para apoio operacional.
 
 **Ator primário:** Operador Logístico.
@@ -127,7 +120,6 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 **Pós-condições:** O frete existe, contém pedidos vinculados e possui ordem de rota definida (ou pendente de ajuste posterior).
 
 #### Atribuir motorista e veículo ao frete (CSU02)
-
 **Sumário:** O Operador Logístico vincula motorista e veículo ao frete antes da saída para entrega.
 
 **Ator primário:** Operador Logístico.
@@ -145,7 +137,6 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 **Pós-condições:** O frete fica associado a motorista e veículo para execução.
 
 #### Atualizar status de entrega (CSU03)
-
 **Sumário:** O Motorista (ou Operador de monitoramento, conforme permissão) altera o status das entregas do frete (por exemplo: pendente, em andamento, concluída, atrasada).
 
 **Atores primários:** Motorista; Operador de monitoramento.
@@ -165,7 +156,6 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 **Pós-condições:** O status da entrega reflete o estado atual da operação.
 
 #### Registrar ocorrência na entrega (CSU04)
-
 **Sumário:** O Motorista ou o Operador de monitoramento registra um imprevisto relacionado à entrega.
 
 **Atores primários:** Motorista; Operador de monitoramento.
@@ -182,7 +172,6 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 **Pós-condições:** A ocorrência fica disponível para consulta no histórico da entrega e em relatórios.
 
 #### Gerar relatório de entregas (CSU05)
-
 **Sumário:** O Gestor gera relatório consolidado de entregas com filtros por período, cliente e status.
 
 **Ator primário:** Gestor.
@@ -199,7 +188,6 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 **Pós-condições:** Os dados apresentados correspondem aos critérios informados.
 
 ### 3.4.3 Diagrama de Classes
-
 A Figura 2 apresenta o modelo conceitual principal do domínio. Um **Cliente** realiza vários **Pedidos**. Vários pedidos podem ser agrupados em um **Frete**, que possui **Motorista** e **Veículo** atribuídos. Cada vínculo pedido–frete em execução é representado por uma **Entrega**, que possui **status**, pode registrar várias **Ocorrencia** e um **ComprovanteEntrega** quando concluída. Essa estrutura atende aos requisitos de cadastro, fretes, rotas, atribuição, status, ocorrências e comprovante descritos na Seção 3.3.1.
 
 #### Figura 2: Diagrama de Classes do Sistema.
