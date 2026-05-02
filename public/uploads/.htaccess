@@ -1,0 +1,2 @@
+php_flag engine Off
+AddType text/plain .php .phtml
