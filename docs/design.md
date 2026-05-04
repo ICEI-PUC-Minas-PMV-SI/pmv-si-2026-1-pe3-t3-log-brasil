@@ -1,7 +1,6 @@
 # 4. PROJETO DO DESIGN DE INTERAÇÃO
 
 ## 4.1 Personas
-Nesta seção você deve detalhar as personas do seu projeto.
 
 4.1.1 **Administrador**
 
