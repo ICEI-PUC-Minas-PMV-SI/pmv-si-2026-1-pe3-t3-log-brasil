@@ -19,31 +19,47 @@ Nesta seção você deve detalhar as personas do seu projeto.
 
 4.1.3 **Motorista**
 
+<br>
+
 <img width="1423" height="1009" alt="image" src="https://github.com/user-attachments/assets/343662cd-0714-4c45-a258-1433b35183ef" />
+
+<br>
 
 4.1.4 **Gestor logítico**
 
+<br>
+
 <img width="1424" height="1013" alt="image" src="https://github.com/user-attachments/assets/ade22b47-2101-4f68-aa1f-8877d16ae70c" />
+
+<br>
 
 4.1.5 **Cliente**
 
+<br>
+
 <img width="1422" height="1012" alt="image" src="https://github.com/user-attachments/assets/f0c8902b-2a38-4661-9330-e31d3670733a" />
+
+<br>
 
 4.1.6 **Operador de monitoramento**
 
+<br>
+
 <img width="1424" height="1013" alt="image" src="https://github.com/user-attachments/assets/d94a1af1-709d-4f02-a540-6214955685a3" />
 
+<br>
 
 ## 4.2 Mapa de Empatia
 
 4.2.1 **Administrador**
 
+<br>
 <img width="1753" height="1067" alt="image" src="https://github.com/user-attachments/assets/b051d0b9-4670-4bf4-b2f3-640ab1926c34" />
-
+<br>
 4.2.2 **Operador logístico**
-
+<br>
 <img width="1748" height="1060" alt="image" src="https://github.com/user-attachments/assets/d8b456fc-148b-4c45-a623-155b980eee07" />
-
+<br>
 4.2.3 **Motorista**
 
 <img width="1752" height="1066" alt="image" src="https://github.com/user-attachments/assets/b6b1b996-77d7-4a0f-b1c8-6d566be6abd7" />
