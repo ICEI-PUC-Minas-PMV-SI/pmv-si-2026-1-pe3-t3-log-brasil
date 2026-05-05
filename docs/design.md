@@ -4,12 +4,12 @@
 
 | Persona | Persona (figura) | Mapa de empatia (figura) |
 | --- | --- | --- |
-| Administrador | [§ 4.1.1](#persona-administrador) | [§ 4.2.1](#mapa-administrador) |
-| Operador logístico | [§ 4.1.2](#persona-operador-logistico) | [§ 4.2.2](#mapa-operador-logistico) |
-| Motorista | [§ 4.1.3](#persona-motorista) | [§ 4.2.3](#mapa-motorista) |
-| Gestor logístico | [§ 4.1.4](#persona-gestor-logistico) | [§ 4.2.4](#mapa-gestor-logistico) |
-| Cliente | [§ 4.1.5](#persona-cliente) | [§ 4.2.5](#mapa-cliente) |
-| Operador de monitoramento | [§ 4.1.6](#persona-operador-monitoramento) | [§ 4.2.6](#mapa-operador-monitoramento) |
+| Administrador | [4.1.1](#persona-administrador) | [4.2.1](#mapa-administrador) |
+| Operador logístico | [4.1.2](#persona-operador-logistico) | [4.2.2](#mapa-operador-logistico) |
+| Motorista | [4.1.3](#persona-motorista) | [4.2.3](#mapa-motorista) |
+| Gestor logístico | [4.1.4](#persona-gestor-logistico) | [4.2.4](#mapa-gestor-logistico) |
+| Cliente | [4.1.5](#persona-cliente) | [4.2.5](#mapa-cliente) |
+| Operador de monitoramento | [4.1.6](#persona-operador-monitoramento) | [4.2.6](#mapa-operador-monitoramento) |
 
 ## 4.1 Personas
 
