@@ -20,7 +20,8 @@ if (is_readable($dotenvPath)) {
         $k = trim($k);
         $v = trim($v);
         if ($v !== '') {
-            $_ENV[$k] ??= $v;
+            // O .env local deve prevalecer sobre variáveis herdadas do ambiente (Apache/Windows).
+            $_ENV[$k] = $v;
         }
     }
 }

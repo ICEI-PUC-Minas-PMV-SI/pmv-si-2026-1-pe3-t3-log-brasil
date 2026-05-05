@@ -4,7 +4,7 @@
 /**
  * Gera INSERT SQL para public.usuarios com senha em bcrypt compatível ao password_verify PHP.
  *
- * Uso: php scripts/gerar_usuario_cli.php nome@email.com "SenhaForte123" "Nome Sobrenome" [admin|operador|visor]
+ * Uso: php scripts/gerar_usuario_cli.php nome@email.com "SenhaForte123" "Nome Sobrenome" [admin|gestor|monitoramento|roteirizador|cliente|motorista]
  */
 declare(strict_types=1);
 
@@ -16,14 +16,16 @@ if ($argc < 3) {
 $email = $argv[1];
 $senha = $argv[2];
 $nome = $argv[3] ?? 'Operador TMS';
-$papelRaw = $argv[4] ?? 'admin';
+$papelRaw = $argv[4] ?? 'gestor';
 
 if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
     fwrite(STDERR, "E-mail inválido.\n");
     exit(1);
 }
 
-$papelSan = in_array($papelRaw, ['admin', 'operador', 'visor'], true) ? $papelRaw : 'operador';
+$papelRaw = trim(mb_strtolower((string) $papelRaw, 'UTF-8'));
+$papeisValidos = ['admin', 'gestor', 'monitoramento', 'roteirizador', 'cliente', 'motorista'];
+$papelSan = in_array($papelRaw, $papeisValidos, true) ? $papelRaw : 'gestor';
 $hash = password_hash($senha, PASSWORD_DEFAULT);
 
 $esc = fn (string $s): string => str_replace("'", "''", $s);

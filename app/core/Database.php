@@ -21,6 +21,7 @@ final class Database
         $db = $_ENV['DB_DATABASE'] ?? 'postgres';
         $user = $_ENV['DB_USERNAME'] ?? 'postgres';
         $pass = $_ENV['DB_PASSWORD'] ?? '';
+        $sslmode = $_ENV['DB_SSLMODE'] ?? '';
 
         $hn = strtolower((string) $host);
         if (
@@ -33,6 +34,15 @@ final class Database
         }
 
         $dsn = sprintf('pgsql:host=%s;port=%s;dbname=%s', $host, $port, $db);
+        $hn2 = strtolower((string) $host);
+        $looksSupabase = str_contains($hn2, '.supabase.co') || str_contains($hn2, 'pooler.supabase.com');
+        $sslmode = trim((string) $sslmode);
+        if ($sslmode === '' && $looksSupabase) {
+            $sslmode = 'require';
+        }
+        if ($sslmode !== '') {
+            $dsn .= ';sslmode=' . $sslmode;
+        }
         try {
             self::$pdo = new PDO($dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
