@@ -35,11 +35,11 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 
 | Código | Requisito Funcional | Descrição |
 |--------|--------------------|-----------|
-| RF1 | Gerenciar Clientes | Permitir inclusão, alteração, exclusão e consulta de clientes |
-| RF2 | Gerenciar Pedidos | Permitir inclusão, alteração, exclusão e consulta de pedidos |
+| RF1 | Gerenciar Cadastros | O sistema deve permitir o gerenciamento dos cadastros de pedidos, clientes, veículos e motoristas |
+| RF2 | Gerenciar Entregas | O sistema deve permitir atualizar o status das entregas, incluindo: Pendente, em andamento e concluida|
 | RF3 | Gerenciar Veículos | Permitir inclusão, alteração, exclusão e consulta de veículos |
-| RF4 | Gerenciar Entregas | Permitir registrar e controlar as entregas realizadas |
-| RF5 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas/Entregadores |
+| RF4 | Gerenciar Entregas | O sistema deve permitir registrar, visualizar e controlar as entregas realizadas.|
+| RF5 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas|
 | RF6 | Consultar Clientes | Permitir visualizar e consultar clientes cadastrados |
 | RF7 | Consultar Pedidos | Permitir visualizar e consultar pedidos cadastrados |
 | RF8 | Consultar Veículos | Permitir visualizar e consultar veículos cadastrados |
