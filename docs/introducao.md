@@ -32,10 +32,18 @@ A crescente competitividade no setor logístico exige que as empresas adotem sol
 
 ## 1.4. Público alvo
 
-Entregadores: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis. 
+O sistema é destinado aos seguintes perfis de usuários:
 
-Separadores de carga: profissionais da área de expedição que organizam e preparam os pedidos para transporte. Utilizam o sistema para consultar informações sobre pedidos, rotas e destino das mercadorias. 
+Motoristas: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis durante a execução das rotas.
 
-Operadores de monitoramento logístico: responsáveis pelo acompanhamento das entregas em tempo real, controle de rotas e registro de ocorrências. Normalmente possuem maior familiaridade com sistemas de gestão e utilizam o sistema em computadores dentro do ambiente operacional da empresa.
+Operadores logísticos: atuam na preparação e organização dos pedidos para transporte, incluindo o planejamento inicial das entregas e apoio na roteirização. Utilizam o sistema para consultar informações sobre pedidos, clientes e destinos.
+
+Operadores de monitoramento: responsáveis pelo acompanhamento das entregas, controle das rotas e registro de ocorrências. Possuem maior familiaridade com sistemas de gestão e utilizam o sistema em ambiente operacional, geralmente em computadores.
+
+Gestores: responsáveis pela supervisão das operações logísticas, análise de desempenho e tomada de decisões estratégicas. Utilizam o sistema para visualizar relatórios e indicadores operacionais.
+
+Administradores: responsáveis pela configuração e manutenção do sistema, incluindo o gerenciamento de usuários, permissões e parâmetros gerais da aplicação.
+
+Clientes: podem acessar informações relacionadas aos seus pedidos e entregas, como status, prazos e histórico.
 
 Dessa forma, o sistema deve ser projetado considerando diferentes níveis de acesso e complexidade de uso, garantindo que cada perfil de usuário consiga utilizar as funcionalidades necessárias de forma clara, eficiente e adequada às suas atividades dentro da operação logística.
