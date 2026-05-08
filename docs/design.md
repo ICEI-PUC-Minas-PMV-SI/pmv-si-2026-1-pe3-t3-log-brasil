@@ -5,9 +5,9 @@
 | Persona | Persona (figura) | Mapa de empatia (figura) |
 | --- | --- | --- |
 | Administrador | [4.1.1](#persona-administrador) | [4.2.1](#mapa-administrador) |
-| Operador logístico | [4.1.2](#persona-operador-logistico) | [4.2.2](#mapa-operador-logistico) |
+| Operador Logístico | [4.1.2](#persona-operador-logistico) | [4.2.2](#mapa-operador-logistico) |
 | Motorista | [4.1.3](#persona-motorista) | [4.2.3](#mapa-motorista) |
-| Gestor logístico | [4.1.4](#persona-gestor-logistico) | [4.2.4](#mapa-gestor-logistico) |
+| Gestor | [4.1.4](#persona-gestor) | [4.2.4](#mapa-gestor) |
 | Cliente | [4.1.5](#persona-cliente) | [4.2.5](#mapa-cliente) |
 | Operador de monitoramento | [4.1.6](#persona-operador-monitoramento) | [4.2.6](#mapa-operador-monitoramento) |
 
@@ -21,9 +21,9 @@
 
 <a id="persona-operador-logistico"></a>
 
-### 4.1.2 Persona — Operador logístico
+### 4.1.2 Persona — Operador Logístico
 
-<img width="1422" height="1012" alt="Persona: Operador logístico" src="https://github.com/user-attachments/assets/3f95e407-fb5b-4075-9ebc-7d7d37279e05" />
+<img width="1422" height="1012" alt="Persona: Operador Logístico" src="https://github.com/user-attachments/assets/3f95e407-fb5b-4075-9ebc-7d7d37279e05" />
 
 <a id="persona-motorista"></a>
 
@@ -31,11 +31,11 @@
 
 <img width="1423" height="1009" alt="Persona: Motorista" src="https://github.com/user-attachments/assets/343662cd-0714-4c45-a258-1433b35183ef" />
 
-<a id="persona-gestor-logistico"></a>
+<a id="persona-gestor"></a>
 
-### 4.1.4 Persona — Gestor logístico
+### 4.1.4 Persona — Gestor
 
-<img width="1424" height="1013" alt="Persona: Gestor logístico" src="https://github.com/user-attachments/assets/ade22b47-2101-4f68-aa1f-8877d16ae70c" />
+<img width="1424" height="1013" alt="Persona: Gestor" src="https://github.com/user-attachments/assets/ade22b47-2101-4f68-aa1f-8877d16ae70c" />
 
 <a id="persona-cliente"></a>
 
@@ -61,9 +61,9 @@ O mapa de empatia é um material utilizado para conhecer melhor o cliente. A par
 
 <a id="mapa-operador-logistico"></a>
 
-### 4.2.2 Mapa de empatia — Operador logístico
+### 4.2.2 Mapa de empatia — Operador Logístico
 
-<img width="1748" height="1060" alt="Mapa de empatia: Operador logístico" src="https://github.com/user-attachments/assets/d8b456fc-148b-4c45-a623-155b980eee07" />
+<img width="1748" height="1060" alt="Mapa de empatia: Operador Logístico" src="https://github.com/user-attachments/assets/d8b456fc-148b-4c45-a623-155b980eee07" />
 
 <a id="mapa-motorista"></a>
 
@@ -71,11 +71,11 @@ O mapa de empatia é um material utilizado para conhecer melhor o cliente. A par
 
 <img width="1752" height="1066" alt="Mapa de empatia: Motorista" src="https://github.com/user-attachments/assets/b6b1b996-77d7-4a0f-b1c8-6d566be6abd7" />
 
-<a id="mapa-gestor-logistico"></a>
+<a id="mapa-gestor"></a>
 
-### 4.2.4 Mapa de empatia — Gestor logístico
+### 4.2.4 Mapa de empatia — Gestor
 
-<img width="1751" height="1058" alt="Mapa de empatia: Gestor logístico" src="https://github.com/user-attachments/assets/5d77f8ad-dee3-4f73-8a4e-cc0bcb6a049f" />
+<img width="1751" height="1058" alt="Mapa de empatia: Gestor" src="https://github.com/user-attachments/assets/5d77f8ad-dee3-4f73-8a4e-cc0bcb6a049f" />
 
 <a id="mapa-cliente"></a>
 

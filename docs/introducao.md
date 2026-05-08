@@ -28,10 +28,18 @@ Objetivos Específicos:
 A crescente competitividade no setor logístico exige que as empresas adotem soluções tecnológicas para melhorar seus processos. Um sistema TMS contribui diretamente para a redução de custos operacionais, aumento da produtividade e melhoria no controle das informações. Além disso, o desenvolvimento deste projeto possibilita a aplicação prática de conceitos estudados em sala de aula, como modelagem de sistemas, banco de dados, integração de informações e lógica de programação, proporcionando aprendizado técnico e visão estratégica sobre a área de logística e tecnologia da informação.
 
 ## 1.4. Público alvo
-Entregadores: responsáveis pela realização das entregas e atualização do status das cargas no sistema. Geralmente possuem conhecimento básico de tecnologia e utilizam principalmente dispositivos móveis. 
+O sistema atende diferentes perfis, alinhados aos atores definidos na modelagem (Diagrama de Casos de Uso):
 
-Separadores de carga: profissionais da área de expedição que organizam e preparam os pedidos para transporte. Utilizam o sistema para consultar informações sobre pedidos, rotas e destino das mercadorias. 
+**Motorista**: responsável por executar as entregas e atualizar o status no sistema. Geralmente utiliza dispositivos móveis e precisa de fluxos rápidos (ex.: iniciar rota, confirmar entrega, registrar ocorrência).
 
-Operadores de monitoramento logístico: responsáveis pelo acompanhamento das entregas em tempo real, controle de rotas e registro de ocorrências. Normalmente possuem maior familiaridade com sistemas de gestão e utilizam o sistema em computadores dentro do ambiente operacional da empresa.
+**Operador Logístico**: atua na operação interna, organizando cadastros base (clientes, pedidos, veículos, motoristas), criando fretes, planejando a sequência de entregas (rota) e atribuindo motorista e veículo.
 
-Dessa forma, o sistema deve ser projetado considerando diferentes níveis de acesso e complexidade de uso, garantindo que cada perfil de usuário consiga utilizar as funcionalidades necessárias de forma clara, eficiente e adequada às suas atividades dentro da operação logística.
+**Operador de monitoramento**: acompanha entregas em andamento, registra/trata exceções (ocorrências) e apoia replanejamento quando necessário.
+
+**Gestor**: acompanha indicadores e relatórios para tomada de decisão (painel operacional, relatórios por período/cliente/status).
+
+**Administrador**: realiza a administração do sistema e manutenção de cadastros/configurações quando aplicável.
+
+**Cliente** (quando previsto no escopo): consulta o status do pedido/entrega.
+
+Dessa forma, o sistema deve considerar diferentes níveis de acesso e complexidade de uso, garantindo que cada perfil utilize as funcionalidades necessárias de forma clara, eficiente e adequada às suas atividades dentro da operação logística.
