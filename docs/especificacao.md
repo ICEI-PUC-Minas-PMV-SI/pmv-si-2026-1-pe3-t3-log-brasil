@@ -12,9 +12,9 @@ O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-
 A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
 
 ### 3.2.3 Limites do produto
-O Log Brasil não contempla controle financeiro, faturamento ou integração com sistemas externos. Também não realiza **rastreamento contínuo em tempo real via GPS**.
+O Log Brasil não contempla controle financeiro, faturamento ou integração com sistemas externos. Também não realiza rastreamento contínuo em tempo real via GPS.
 
-Para manter valor operacional com menor complexidade, o sistema poderá oferecer **check-in geográfico pontual**: no momento em que o **Motorista** confirma uma entrega como “concluída/entregue”, o sistema registra a coordenada (latitude/longitude) apenas naquele evento, junto com data/hora e evidências de entrega (quando aplicável).
+Para manter valor operacional com menor complexidade, o sistema poderá oferecer check-in geográfico pontual: no momento em que o Motorista confirma uma entrega como “concluída/entregue”, o sistema registra a coordenada (latitude/longitude) apenas naquele evento, junto com data/hora e evidências de entrega (quando aplicável).
 
 O sistema é voltado ao cadastro e gerenciamento de entregas e fretes em um contexto operacional simples, não atendendo múltiplas empresas ou operações logísticas altamente complexas.
 
@@ -39,14 +39,14 @@ O sistema é voltado ao cadastro e gerenciamento de entregas e fretes em um cont
 
 | Código | Requisito Funcional | Descrição |
 |--------|--------------------|-----------|
-| RF01 | Manter cadastros base (CRUD) | Permitir inclusão, alteração, exclusão, consulta e listagem de **Clientes**, **Pedidos**, **Veículos** e **Motoristas** (cadastro básico). |
-| RF02 | Manter fretes | Criar/alterar/cancelar fretes e **vincular pedidos ao frete** (controle operacional do agrupamento). |
-| RF03 | Vincular recursos ao frete | Atribuir **Motorista** e **Veículo** ao frete antes da saída para entrega. |
-| RF04 | Gerar/planejar rota do frete | Definir e persistir a **sequência de entregas (paradas)** do frete para apoio operacional. |
+| RF01 | Manter cadastros base (CRUD) | Permitir inclusão, alteração, exclusão, consulta e listagem de Clientes, Pedidos, Veículos e Motoristas (cadastro básico). |
+| RF02 | Manter fretes | Criar/alterar/cancelar fretes e vincular pedidos ao frete (controle operacional do agrupamento). |
+| RF03 | Vincular recursos ao frete | Atribuir Motorista e Veículo ao frete antes da saída para entrega. |
+| RF04 | Gerar/planejar rota do frete | Definir e persistir a sequência de entregas (paradas) do frete para apoio operacional. |
 | RF05 | Atualizar status de entrega | Atualizar o status da entrega com validação de transições (ex.: pendente → em andamento → concluída; exceções conforme ocorrências). |
 | RF06 | Registrar ocorrências | Registrar ocorrências relacionadas às entregas (tipo, descrição, data/hora) e associá-las ao histórico. |
 | RF07 | Registrar comprovante de entrega | Registrar evidências (nome do recebedor, data/hora, observações) e, quando possível, anexos. |
-| RF08 | Check-in geográfico na entrega | Capturar e armazenar a coordenada (lat/long) **apenas no momento** da confirmação de entrega (“entregue/concluída”), junto com data/hora. |
+| RF08 | Check-in geográfico na entrega | Capturar e armazenar a coordenada (lat/long) apenas no momento da confirmação de entrega (“entregue/concluída”), junto com data/hora. |
 | RF09 | Consultar painel operacional | Exibir visão consolidada de fretes e entregas com filtros por período, cliente e status. |
 | RF10 | Roteirização e replanejamento | Permitir ajustar a sequência de rota e replanejar entregas em caso de exceções, mantendo histórico das alterações. |
 | RF11 | Gerar relatórios | Permitir geração de relatórios básicos de entregas/fretes (por período, cliente, status e ocorrências). |
@@ -82,7 +82,7 @@ O sistema é voltado ao cadastro e gerenciamento de entregas e fretes em um cont
 ## 3.4 Modelagem do Sistema
 
 ### 3.4.1 Diagrama de Casos de Uso
-O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O **Administrador** concentra funções de configuração e cadastros gerais. O **Operador Logístico** trata de pedidos, fretes, planejamento de rota e atribuição de motorista e veículo. O **Motorista** executa a rota, atualiza status e registra ocorrências e comprovantes. O **Operador de monitoramento** acompanha entregas em andamento e apoia exceções. O **Gestor** consulta painéis e relatórios. O **Cliente** (quando previsto no escopo) consulta o status de seus pedidos.
+O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O Administrador concentra funções de configuração e cadastros gerais. O Operador Logístico trata de pedidos, fretes, planejamento de rota e atribuição de motorista e veículo. O Motorista executa a rota, atualiza status e registra ocorrências e comprovantes. O Operador de monitoramento acompanha entregas em andamento e apoia exceções. O Gestor consulta painéis e relatórios. O Cliente (quando previsto no escopo) consulta o status de seus pedidos.
 
 Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, pedidos, veículos, motoristas), operação (frete, rota, atribuição, entrega, status, ocorrências, comprovante), consulta (painel) e gestão (relatórios).
 
@@ -94,40 +94,40 @@ Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, ped
 A seguir estão descrições textuais de casos de uso centrais do domínio logístico, alinhados aos requisitos funcionais da Seção 3.3.1.
 
 #### Manter cadastros base (CRUD) (CSU00)
-**Sumário:** O Administrador ou Operador Logístico mantém os cadastros de clientes, pedidos, veículos e motoristas, com operações de criação, edição, consulta e exclusão.
+Sumário: O Administrador ou Operador Logístico mantém os cadastros de clientes, pedidos, veículos e motoristas, com operações de criação, edição, consulta e exclusão.
 
-**Atores primários:** Administrador; Operador Logístico.
+Atores primários: Administrador; Operador Logístico.
 
-**Pré-condições:** Usuário autenticado com permissão de cadastro.
+Pré-condições: Usuário autenticado com permissão de cadastro.
 
-**Fluxo principal (CRUD):**
+Fluxo principal (CRUD):
 
 1. O ator acessa o módulo de cadastros (Clientes, Pedidos, Veículos ou Motoristas).
 2. O Sistema apresenta a listagem com pesquisa e filtros.
 3. O ator escolhe uma operação:
-   - **Criar**: informa dados obrigatórios e confirma.
-   - **Editar**: seleciona registro, altera campos e confirma.
-   - **Excluir/Inativar**: confirma a operação (podendo haver bloqueios por vínculo operacional).
-   - **Consultar**: abre detalhes do registro.
+   - Criar: informa dados obrigatórios e confirma.
+   - Editar: seleciona registro, altera campos e confirma.
+   - Excluir/Inativar: confirma a operação (podendo haver bloqueios por vínculo operacional).
+   - Consultar: abre detalhes do registro.
 4. O Sistema valida regras, persiste a alteração e atualiza a listagem.
 
-**Fluxos alternativos (exemplos):**
+Fluxos alternativos (exemplos):
 
-- **Exclusão bloqueada por vínculo**: se o item estiver associado a frete/entrega ativa, o Sistema impede exclusão e sugere **inativação**.
-- **Dados inválidos/duplicados**: o Sistema informa inconsistências e solicita correção.
+- Exclusão bloqueada por vínculo: se o item estiver associado a frete/entrega ativa, o Sistema impede exclusão e sugere inativação.
+- Dados inválidos/duplicados: o Sistema informa inconsistências e solicita correção.
 
-**Pós-condições:** Cadastros base atualizados e disponíveis para a operação (frete, rota, entrega).
+Pós-condições: Cadastros base atualizados e disponíveis para a operação (frete, rota, entrega).
 
 #### Gerenciar fretes e planejar rota (CSU01)
-**Sumário:** O Operador Logístico cria um frete, associa pedidos e define a sequência de entregas (rota) para apoio operacional.
+Sumário: O Operador Logístico cria um frete, associa pedidos e define a sequência de entregas (rota) para apoio operacional.
 
-**Ator primário:** Operador Logístico.
+Ator primário: Operador Logístico.
 
-**Ator secundário:** Sistema.
+Ator secundário: Sistema.
 
-**Pré-condições:** O usuário está autenticado com perfil adequado; existem pedidos cadastrados em situação que permita inclusão em frete.
+Pré-condições: O usuário está autenticado com perfil adequado; existem pedidos cadastrados em situação que permita inclusão em frete.
 
-**Fluxo principal:**
+Fluxo principal:
 
 1. O Operador Logístico solicita a criação de um novo frete.
 2. O Sistema exibe formulário para dados do frete (identificação, período previsto, observações).
@@ -138,23 +138,23 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 7. O Operador Logístico define a ordem das paradas (sequência da rota).
 8. O Sistema persiste a sequência e exibe o resumo do frete.
 
-**Dependências explícitas (Gerar Rota × Vincular Frete):**
+Dependências explícitas (Gerar Rota × Vincular Frete):
 
-- **Gerar/planejar rota** depende de o frete já existir e ter **pedidos vinculados** (passos 1–6).
-- A **atribuição de motorista e veículo** ao frete (CSU02) pode ocorrer **após** a definição inicial da rota, porém a rota pode ser **ajustada** posteriormente em caso de exceções (RF10), mantendo histórico.
+- Gerar/planejar rota depende de o frete já existir e ter pedidos vinculados (passos 1–6).
+- A atribuição de motorista e veículo ao frete (CSU02) pode ocorrer após a definição inicial da rota, porém a rota pode ser ajustada posteriormente em caso de exceções (RF10), mantendo histórico.
 
-**Fluxo alternativo (5–6) – Pedido indisponível:** Se um pedido não puder ser associado (já em outro frete ativo ou status incompatível), o Sistema informa o motivo e o Operador Logístico ajusta a seleção.
+Fluxo alternativo (5–6) – Pedido indisponível: Se um pedido não puder ser associado (já em outro frete ativo ou status incompatível), o Sistema informa o motivo e o Operador Logístico ajusta a seleção.
 
-**Pós-condições:** O frete existe, contém pedidos vinculados e possui ordem de rota definida (ou pendente de ajuste posterior).
+Pós-condições: O frete existe, contém pedidos vinculados e possui ordem de rota definida (ou pendente de ajuste posterior).
 
 #### Atribuir motorista e veículo ao frete (CSU02)
-**Sumário:** O Operador Logístico vincula motorista e veículo ao frete antes da saída para entrega.
+Sumário: O Operador Logístico vincula motorista e veículo ao frete antes da saída para entrega.
 
-**Ator primário:** Operador Logístico.
+Ator primário: Operador Logístico.
 
-**Pré-condições:** Frete cadastrado; motorista e veículo cadastrados e aptos ao uso.
+Pré-condições: Frete cadastrado; motorista e veículo cadastrados e aptos ao uso.
 
-**Fluxo principal:**
+Fluxo principal:
 
 1. O Operador Logístico localiza o frete desejado.
 2. O Operador Logístico solicita atribuição de recursos.
@@ -162,16 +162,16 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 4. O Operador Logístico seleciona um motorista e um veículo e confirma.
 5. O Sistema valida consistência (ex.: veículo ativo, motorista habilitado) e grava a atribuição.
 
-**Pós-condições:** O frete fica associado a motorista e veículo para execução.
+Pós-condições: O frete fica associado a motorista e veículo para execução.
 
 #### Atualizar status de entrega (CSU03)
-**Sumário:** O Motorista (ou Operador de monitoramento, conforme permissão) altera o status das entregas do frete (por exemplo: pendente, em andamento, concluída, atrasada).
+Sumário: O Motorista (ou Operador de monitoramento, conforme permissão) altera o status das entregas do frete (por exemplo: pendente, em andamento, concluída, atrasada).
 
-**Atores primários:** Motorista; Operador de monitoramento.
+Atores primários: Motorista; Operador de monitoramento.
 
-**Pré-condições:** Usuário autenticado; entrega vinculada a frete atribuído ao motorista (quando aplicável).
+Pré-condições: Usuário autenticado; entrega vinculada a frete atribuído ao motorista (quando aplicável).
 
-**Fluxo principal:**
+Fluxo principal:
 
 1. O ator acessa a lista de entregas do frete ou do dia.
 2. O ator seleciona uma entrega e solicita alteração de status.
@@ -179,144 +179,56 @@ A seguir estão descrições textuais de casos de uso centrais do domínio logí
 4. O ator escolhe o novo status e confirma.
 5. O Sistema valida a transição, registra data/hora e atualiza o painel.
 
-**Fluxo alternativo – Transição inválida:** O Sistema informa que a mudança não é permitida e mantém o status anterior.
+Fluxo alternativo – Transição inválida: O Sistema informa que a mudança não é permitida e mantém o status anterior.
 
-**Pós-condições:** O status da entrega reflete o estado atual da operação.
+Pós-condições: O status da entrega reflete o estado atual da operação.
 
 #### Registrar ocorrência na entrega (CSU04)
-**Sumário:** O Motorista ou o Operador de monitoramento registra um imprevisto relacionado à entrega.
+Sumário: O Motorista ou o Operador de monitoramento registra um imprevisto relacionado à entrega.
 
-**Atores primários:** Motorista; Operador de monitoramento.
+Atores primários: Motorista; Operador de monitoramento.
 
-**Pré-condições:** Entrega identificável no sistema.
+Pré-condições: Entrega identificável no sistema.
 
-**Fluxo principal:**
+Fluxo principal:
 
 1. O ator seleciona a entrega e solicita registro de ocorrência.
 2. O Sistema apresenta formulário (tipo, descrição, data/hora).
 3. O ator preenche e confirma.
 4. O Sistema armazena a ocorrência e a associa à entrega.
 
-**Regras de impacto no fluxo/status (quando aplicável):**
+Regras de impacto no fluxo/status (quando aplicável):
 
-- Ocorrências do tipo **“Destinatário ausente”**, **“Recusa”** ou **“Endereço não localizado”** podem alterar automaticamente o status para **“Falha na entrega”** (ou “Pendente reentrega”, conforme política definida).
-- Ocorrências do tipo **“Avaria”** podem alterar o status para **“Com divergência”**.
-- Ocorrências do tipo **“Atraso operacional”** podem alterar o status para **“Atrasada”**.
+- Ocorrências do tipo Destinatário ausente”, "Recusa” ou “Endereço não localizado” podem alterar automaticamente o status para “Falha na entrega” (ou “Pendente reentrega”, conforme política definida).
+- Ocorrências do tipo “Avaria” podem alterar o status para “Com divergência”.
+- Ocorrências do tipo “Atraso operacional” podem alterar o status para “Atrasada”.
 
 Quando houver alteração automática, o Sistema registra a transição (status anterior → novo status), data/hora e referência da ocorrência que a originou.
 
-**Pós-condições:** A ocorrência fica disponível para consulta no histórico da entrega, no painel e em relatórios; o status pode ser atualizado automaticamente conforme regras.
+Pós-condições: A ocorrência fica disponível para consulta no histórico da entrega, no painel e em relatórios; o status pode ser atualizado automaticamente conforme regras.
 
 #### Gerar relatório de entregas (CSU05)
-**Sumário:** O Gestor gera relatório consolidado de entregas com filtros por período, cliente e status.
+Sumário: O Gestor gera relatório consolidado de entregas com filtros por período, cliente e status.
 
-**Ator primário:** Gestor.
+Ator primário: Gestor.
 
-**Pré-condições:** Usuário autenticado com perfil de Gestor.
+Pré-condições: Usuário autenticado com perfil de Gestor.
 
-**Fluxo principal:**
+Fluxo principal:
 
 1. O Gestor acessa a funcionalidade de relatórios.
 2. O Gestor define filtros (período, cliente, status).
 3. O Sistema processa e exibe o relatório ou exportação disponível.
 4. O Gestor pode ajustar filtros e repetir a consulta.
 
-**Pós-condições:** Os dados apresentados correspondem aos critérios informados.
+Pós-condições: Os dados apresentados correspondem aos critérios informados.
 
 ### 3.4.3 Diagrama de Classes
-A Figura 2 apresenta o modelo conceitual principal do domínio. Um **Cliente** realiza vários **Pedidos**. Vários pedidos podem ser agrupados em um **Frete**, que possui **Motorista** e **Veículo** atribuídos. Cada vínculo pedido–frete em execução é representado por uma **Entrega**, que possui **status**, pode registrar várias **Ocorrencia** e um **ComprovanteEntrega** quando concluída. Essa estrutura atende aos requisitos de cadastro, fretes, rotas, atribuição, status, ocorrências e comprovante descritos na Seção 3.3.1.
+A Figura 2 apresenta o modelo conceitual principal do domínio. Um Cliente realiza vários Pedidos. Vários pedidos podem ser agrupados em um Frete, que possui Motorista e Veículo atribuídos. Cada vínculo pedido–frete em execução é representado por uma Entrega, que possui status, pode registrar várias Ocorrencia e um ComprovanteEntrega quando concluída. Essa estrutura atende aos requisitos de cadastro, fretes, rotas, atribuição, status, ocorrências e comprovante descritos na Seção 3.3.1.
 
 #### Figura 2: Diagrama de Classes do Sistema.
  
  ![Diagrama de Classes do Sistema](../src/img/diagrama_classes_dos_sistema.png)
-
-Para explicitar **comportamentos** (métodos) relevantes à implementação, o diagrama a seguir complementa a Figura 2 com operações essenciais do domínio:
-
-```mermaid
-classDiagram
-  class Cliente {
-    +int identificador
-    +String nome
-    +String documento
-    +String contato
-    +String endereco
-  }
-
-  class Pedido {
-    +int identificador
-    +Date dataPedido
-    +String origem
-    +String destino
-    +String prioridade
-    +String situacao
-    +marcarAlocadoEmFrete()
-    +marcarDisponivel()
-  }
-
-  class Frete {
-    +int identificador
-    +Date dataPrevista
-    +String observacoes
-    +int sequenciaRota
-    +vincularPedido(pedidoId)
-    +removerPedido(pedidoId)
-    +definirSequenciaRota(sequencia)
-    +atribuirRecursos(motoristaId, veiculoId)
-    +replanejarRota(sequencia)
-  }
-
-  class Veiculo {
-    +int identificador
-    +String placa
-    +String tipo
-    +double capacidade
-    +boolean ativo
-    +ativar()
-    +inativar()
-  }
-
-  class Motorista {
-    +int identificador
-    +String nome
-    +String documento
-    +String contato
-    +boolean ativo
-    +ativar()
-    +inativar()
-  }
-
-  class Entrega {
-    +int identificador
-    +String status
-    +DateTime previsao
-    +DateTime dataAtualizacao
-    +atualizarStatus(novoStatus)
-    +registrarOcorrencia(tipo, descricao, dataHora)
-    +registrarComprovante(nomeRecebedor, dataHora, observacoes)
-    +confirmarEntregaComCheckInGeografico(lat, long, dataHora)
-  }
-
-  class Ocorrencia {
-    +int identificador
-    +String tipo
-    +String descricao
-    +DateTime dataHora
-  }
-
-  class ComprovanteEntrega {
-    +String nomeRecebedor
-    +DateTime dataHora
-    +String observacoes
-  }
-
-  Cliente "1" --> "*" Pedido : realiza
-  Frete "1" --> "*" Entrega : contem
-  Pedido "1" --> "0..1" Entrega : gera
-  Frete "0..1" --> "0..1" Veiculo : utiliza
-  Frete "0..1" --> "0..1" Motorista : atribuido
-  Entrega "1" --> "*" Ocorrencia : registra
-  Entrega "1" --> "0..1" ComprovanteEntrega : possui
-```
 
 ### 3.4.4 Descrições das Classes
 
