@@ -12,7 +12,9 @@ O produto será denominado Log Brasil – Sistema de Gestão de Entregas. Trata-
 A missão do Log Brasil é proporcionar maior controle, organização e eficiência nas operações de entrega, por meio da centralização das informações e do acompanhamento das atividades logísticas. O sistema busca reduzir falhas operacionais, facilitar o acesso aos dados e apoiar o usuário na gestão das entregas, contribuindo para um processo mais ágil, seguro e estruturado.
 
 ### 3.2.3 Limites do produto
-O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos ou rastreamento em tempo real via GPS. O sistema é voltado apenas para o cadastro e gerenciamento básico das entregas, não atendendo múltiplas empresas ou operações logísticas complexas.
+O Log Brasil não contempla controle financeiro, faturamento, integração com sistemas externos, nem rastreamento em tempo real. Para manter valor operacional sem a complexidade do GPS em tempo real, o escopo inclui check-in geográfico opcional: ao confirmar a entrega (por exemplo, acionando “entregue”), o sistema pode registrar, nesse instante, as coordenadas geográficas fornecidas pelo navegador ou pelo dispositivo — um único ponto no momento do registro, não acompanhamento da rota.
+
+Além disso, o produto é voltado ao cadastro e ao gerenciamento das entregas em escopo controlado, não atendendo múltiplas empresas ou operações logísticas complexas.
 
 ### 3.2.4 Benefícios do produto
 
@@ -33,25 +35,18 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 
 ### 3.3.1 Requisitos Funcionais
 
-| Código | Requisito Funcional | Descrição |
-|--------|--------------------|-----------|
-| RF1 | Gerenciar Cadastros | O sistema deve permitir o gerenciamento dos cadastros de pedidos, clientes, veículos e motoristas |
-| RF2 | Gerenciar Entregas | O sistema deve permitir atualizar o status das entregas, incluindo: Pendente, em andamento e concluida|
-| RF3 | Gerenciar Veículos | Permitir inclusão, alteração, exclusão e consulta de veículos |
-| RF4 | Gerenciar Entregas | O sistema deve permitir registrar, visualizar e controlar as entregas realizadas.|
-| RF5 | Gerenciar Motoristas | Permitir inclusão, alteração, exclusão e consulta de Motoristas|
-| RF6 | Consultar Clientes | Permitir visualizar e consultar clientes cadastrados |
-| RF7 | Consultar Pedidos | Permitir visualizar e consultar pedidos cadastrados |
-| RF8 | Consultar Veículos | Permitir visualizar e consultar veículos cadastrados |
-| RF9 | Consultar Entregas | Permitir visualizar e consultar entregas cadastradas |
-| RF10 | Consultar Motoristas | Permitir visualizar e consultar motoristas cadastrados |
-| RF11 | Atualizar Status de Entrega | Permitir atualizar o status das entregas (pendente, em andamento, concluída) |
-| RF12 | Registrar Ocorrências | Permitir registrar ocorrências relacionadas às entregas |
-| RF13 | Gerar Relatórios | Permitir a geração de relatórios básicos das entregas |
-| RF14 | Planejar rotas | Sugerir e registrar sequencia de entregas por frete para apoio operacional. |
-| RF15 | Registrar comprovante de entrega | Permitir registro de evidencias (nome do recebedor, data/hora e observacoes). |
-| RF16 | Consultar painel operacional | Exibir visao consolidada de fretes e entregas com filtros por periodo, cliente e status. |
-| RF17 | Atribuir recursos de transporte | Vincular motorista e veiculo ao frete antes da saida para entrega. |
+| Código | Requisito funcional | Descrição |
+|--------|---------------------|-----------|
+| RF1 | Manter cadastros mestre (CRUD) | Incluir, alterar, excluir e consultar clientes, pedidos, veículos e motoristas, com regras de permissão por perfil de usuário. |
+| RF2 | Gerenciar entregas | Registrar e controlar as entregas vinculadas aos fretes. |
+| RF3 | Atualizar status e check-in geográfico | Permitir atualizar o status das entregas (pendente, em andamento, concluída, atrasada, cancelada, conforme tabela de transições); ao marcar entrega como concluída, permitir check-in geográfico opcional. |
+| RF4 | Registrar ocorrências | Registrar ocorrências associadas às entregas, com tipo, descrição e data/hora, podendo acionar regras de impacto sobre o status. |
+| RF5 | Gerar relatórios | Gerar relatórios básicos das entregas com filtros (período, cliente, status). |
+| RF6 | Planejar rota | Após vínculo dos pedidos ao frete, definir a sequência de paradas (ordem da rota) para apoio operacional. |
+| RF7 | Registrar comprovante de entrega | Registrar evidências de conclusão (nome do recebedor, data/hora, observações, assinatura do cliente). |
+| RF8 | Consultar painel operacional | Exibir visão consolidada de fretes e entregas com filtros por período, cliente e status. |
+| RF9 | Atribuir motorista e veículo ao frete | Vincular motorista e veículo ao frete antes da saída para entrega (depende de frete com pedidos e, ordinariamente, de rota definida.) |
+
 
 ### 3.3.2 Requisitos Não Funcionais
 
@@ -85,7 +80,8 @@ O Log Brasil não contempla controle financeiro, faturamento, integração com s
 
 ### 3.4.1 Diagrama de Casos de Uso
 
-O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O **Administrador** concentra funções de configuração e cadastros gerais. O **Operador Logístico** trata de pedidos, fretes, planejamento de rota e atribuição de motorista e veículo. O **Motorista** executa a rota, atualiza status e registra ocorrências e comprovantes. O **Operador de monitoramento** acompanha entregas em andamento e apoia exceções. O **Gestor** consulta painéis e relatórios. O **Cliente** (quando previsto no escopo) consulta o status de seus pedidos.
+O diagrama da Figura 1 representa as principais interações entre os atores do Log Brasil e o sistema. O **Administrador** concentra funções de configuração e cadastros gerais. O **Operador logístico** trata de pedidos, fretes, **vínculo de pedidos ao frete**, **definição da sequência da rota** e **atribuição de motorista e veículo**. O **Motorista** executa a rota, atualiza status, realiza check-in geográfico na conclusão (quando habilitado) e registra ocorrências e comprovantes. O **Operador de monitoramento** acompanha o painel e apoia exceções. O **Gestor** consulta painéis e relatórios. O **Cliente** (quando previsto no escopo) consulta o status de seus pedidos.
+
 
 Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, pedidos, veículos, motoristas), operação (frete, rota, atribuição, entrega, status, ocorrências, comprovante), consulta (painel) e gestão (relatórios).
 
@@ -95,32 +91,48 @@ Os casos de uso estão agrupados de forma lógica: cadastros base (clientes, ped
 
 ### 3.4.2 Descrições de Casos de Uso
 
-A seguir estão descrições textuais de casos de uso centrais do domínio logístico, alinhados aos requisitos funcionais da Seção 3.3.1.
+#### Dependências — Montagem do frete, rota e atribuição
+Para evitar ambiguidade entre vincular pedidos ao frete, definir rota (sequência) e atribuir motorista/veículo:
 
-#### Gerenciar fretes e planejar rota (CSU01)
+| Ordem sugerida | Caso de uso (resumo) | Dependência |
+|----------------|----------------------|-------------|
+| 1 | Criar frete e vincular pedidos (inclusão dos pedidos no frete). | Pedidos cadastrados e aptos. |
+| 2 | Gerar / ajustar rota: ordenar as entregas (paradas) dentro do frete. | Frete já existente com pedidos vinculados (não há sequência de rota sem carga alocada ao frete). |
+| 3 | Atribuir motorista e veículo ao frete. | Frete criado; em operação típica, rota já definida — a saída só ocorre com recurso alocado, salvo exceção operacional documentada. |
+“A rota” no sistema é a ordenação das paradas desse frete; “vincular frete” no sentido operacional corresponde a associar pedidos ao frete e gerar as entregas correspondentes. O caso de uso [CSU01](#csu01) cobre criação do frete, vínculo de pedidos e definição da sequência; [CSU02](#csu02) trata somente da atribuição de motorista e veículo, que depende da existência do frete e utiliza a rota já ordenada como referência de execução.
 
-**Sumário:** O Operador Logístico cria um frete, associa pedidos e define a sequência de entregas (rota) para apoio operacional.
+#### Manter cadastros mestre (CSU00)
+
+**Sumário:** O Administrador ou o Operador logístico (conforme permissões) realiza operações de **CRUD** sobre as entidades mestras do sistema.
+
+**Atores primários:** Administrador; Operador logístico.
+
+**Escopo das operações:**
+
+| Entidade | Criar | Consultar | Alterar | Excluir / inativar |
+|----------|-------|-----------|---------|----------------------|
+| Cliente | Sim | Sim | Sim | Sim (se sem dependências bloqueantes) |
+| Pedido | Sim | Sim | Sim | Sim (conforme situação no processo) |
+| Veículo | Sim | Sim | Sim | Sim ou inativação |
+| Motorista | Sim | Sim | Sim | Sim ou inativação |
+
+**Pré-condições:** Usuário autenticado com perfil autorizado.
+
+**Pós-condições:** Os cadastros refletem o estado atual desejado; exclusões respeitam integridade referencial (ex.: não remover pedido já vinculado a frete ativo sem regra de negócio específica).
+
+**Requisitos relacionados:** RF1.
+
+#### Gerenciar fretes, vincular pedidos e planejar rota (CSU01)
+
+**Sumário:** O Operador Logístico cria um frete, associa pedidos ao frete (vínculo operacional) e define a sequência de entregas (rota) para apoio operacional. Corresponde, em conjunto, ao que o diagrama pode mostrar como vinculação ao frete e geração de rota — aqui descrito de forma encadeada no mesmo fluxo de montagem do frete.
 
 **Ator primário:** Operador Logístico.
 
 **Ator secundário:** Sistema.
 
-**Pré-condições:** O usuário está autenticado com perfil adequado; existem pedidos cadastrados em situação que permita inclusão em frete.
-
-**Fluxo principal:**
-
-1. O Operador Logístico solicita a criação de um novo frete.
-2. O Sistema exibe formulário para dados do frete (identificação, período previsto, observações).
-3. O Operador Logístico informa os dados e confirma.
-4. O Sistema registra o frete e apresenta a opção de associar pedidos.
-5. O Operador Logístico seleciona os pedidos a incluir no frete.
-6. O Sistema valida disponibilidade dos pedidos e associa-os ao frete.
-7. O Operador Logístico define a ordem das paradas (sequência da rota).
-8. O Sistema persiste a sequência e exibe o resumo do frete.
-
-**Fluxo alternativo (5–6) – Pedido indisponível:** Se um pedido não puder ser associado (já em outro frete ativo ou status incompatível), o Sistema informa o motivo e o Operador Logístico ajusta a seleção.
-
 **Pós-condições:** O frete existe, contém pedidos vinculados e possui ordem de rota definida (ou pendente de ajuste posterior).
+
+**Requisitos relacionados:** RF2, RF6.
 
 #### Atribuir motorista e veículo ao frete (CSU02)
 

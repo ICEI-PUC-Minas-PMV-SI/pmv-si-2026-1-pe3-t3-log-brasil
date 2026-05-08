@@ -7,7 +7,9 @@
 `SEMESTRE: 3º`
 
 O Log Brasil é um sistema de gestão de entregas desenvolvido para otimizar processos logísticos e centralizar informações operacionais.
-A plataforma permitirá cadastro de clientes, pedidos, motoristas e veículos, além do acompanhamento das entregas em tempo real.
+
+A plataforma permitirá cadastro de clientes, pedidos, motoristas e veículos, além do acompanhamento das entregas pelo painel operacional e pelos status informados pelos motoristas (sem rastreamento contínuo por GPS; há possibilidade de check-in geográfico no momento da confirmação de entrega, conforme a especificação).
+
 O sistema contará com controle de status, roteirização, registro de ocorrências e relatórios gerenciais para apoio à decisão.
 O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência do cliente nas operações de transporte.
 ## Integrantes
