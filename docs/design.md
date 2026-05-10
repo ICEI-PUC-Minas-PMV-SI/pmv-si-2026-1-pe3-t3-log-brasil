@@ -91,14 +91,129 @@ O mapa de empatia é um material utilizado para conhecer melhor o cliente. A par
 
 ## 4.3 Protótipos das Interfaces
 
-Apresente nesta seção os protótipos de alta fidelidade do sistema proposto. A fidelidade do protótipo refere-se ao nível de detalhes e funcionalidades incorporadas a ele. Assim, um protótipo de alta fidelidade é uma representação interativa do produto, baseada no computador ou em dispositivos móveis. Esse protótipo já apresenta maior semelhança com o design final em termos de detalhes e funcionalidades. No desenvolvimento dos protótipos, devem ser considerados os princípios gestálticos, as recomendações ergonômicas e as regras de design (como as 8 regras de ouro). É importante descrever no texto do relatório como os princípios gestálticos e as regras de ouro foram seguidas no projeto das interfaces. Nesta etapa deve-se dar uma ênfase na implementação do software de modo que possam ser realizados os testes com usuários na etapa seguinte.
+**Protótipo no Figma:** [Acessar Protótipo](https://www.figma.com/proto/ZtMJLq3T0wDqDu3yejMoKu/Prot%C3%B3tipo-LogBrasil?node-id=0-1&t=R490sqlATvQPWaCT-1)
 
 ## 4.4 Testes com Protótipos
 
-Nesta seção você deve apresentar os testes realizados com usuários utilizando os protótipos de alta fidelidade desenvolvidos na seção anterior. O objetivo é avaliar a usabilidade, a clareza das informações e a adequação do design às necessidades das personas definidas no projeto.
+# Testes de Usabilidade: Sistema de Gestão de Fretes LogBrasil
 
-Cada integrante do grupo deverá aplicar o teste com um usuário distinto, preferencialmente alinhado ao perfil das personas criadas. Devem ser definidas previamente as tarefas que o usuário deverá executar no protótipo (por exemplo: realizar um cadastro, buscar um produto, concluir uma compra).
+## 1. Introdução
+Este documento apresenta os resultados do teste de usabilidade realizado com o protótipo do sistema **Log Brasil**. O objetivo foi validar o fluxo de navegação, a clareza das interfaces e a eficiência das tarefas principais.
 
-Durante a aplicação do teste, registre observações sobre comportamentos, dúvidas, erros e comentários feitos pelo usuário, bem como o tempo necessário para a execução de cada tarefa. Ao final, colete o feedback do participante, destacando pontos positivos e aspectos a serem melhorados.
+### Metodologia
+* **Método:** Teste de Usabilidade Moderado.
+* **Técnica:** *Think Aloud* (Pensar em voz alta).
+* **Perfis Testados:** Cliente, Operadores, Gestor, Administrador e Motorista.
+* **Métricas:** Tempo de execução, taxa de sucesso e percepções subjetivas.
 
-Os resultados obtidos por todos os integrantes devem ser consolidados, apresentando uma análise geral com os principais problemas encontrados, oportunidades de melhoria e as ações previstas para o projeto final.
+> Conforme define Jakob Nielsen (1993), o ato de pensar em voz alta é, possivelmente, o método de engenharia de usabilidade mais valioso para o desenvolvimento de interfaces.
+
+---
+
+## 2. Dados Brutos (Resultados por Perfil)
+
+###  Cliente
+**Tarefa:** Consultar pacote via CPF a partir da tela inicial.
+**Ponto de Sucesso:** Chegar à tela de "Resultado da Busca" com as informações corretas.
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 10 seg |
+| **Erros de Digitação** | Não. O usuário não teve dificuldade em reconhecer as funções ou preencher o CPF. |
+| **Clareza** | Sim, entendeu a localização do pacote e o histórico de movimentações. |
+
+---
+
+###  Operador de Monitoramento
+**Tarefa:** Login > Acessar Divergências > Encerrar uma pendência aberta.
+**Ponto de Sucesso:** Confirmação de que a divergência foi encerrada com sucesso.
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 1min 15seg |
+| **Navegação** | O menu era uma das últimas abas; o usuário demorou na leitura da tela inicial. |
+| **Dúvida** | Não. Clicar em aprovar foi uma ação natural e sem hesitação. |
+
+---
+
+###  Gestor
+**Tarefa:** Login > Acessar a lista de Viagens Finalizadas.
+**Ponto de Sucesso:** Visualização da lista completa de entregas concluídas.
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 2min |
+| **Percepção** | Sim, o usuário informou ter tido “boas noções” do andamento das operações. |
+| **Clareza** | Linguagem clara. Sugestão: trocar título da viagem (rota) pelo destino final. |
+| **Crítica** | O botão “Ver apontamentos” poderia ser mais destacado. As viagens estão identificadas pela rota e o usuário recomendou mudar para o nome de destino |
+
+---
+
+###  Operador Logístico (Cadastro)
+**Tarefa:** Login > Acessar Pedidos > Cadastrar novo pedido.
+**Ponto de Sucesso:** Visualizar a mensagem de "Pedido cadastrado com sucesso".
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 1min |
+| **Carga Cognitiva** | Formulário longo e cansativo, com muitos campos obrigatórios. |
+| **Erros** | Tentou pular campos de latitude/longitude e o campo obrigatório de observações. |
+| **Sugestão** | Dar mais destaque ao botão “Buscar coordenadas”. |
+
+---
+
+###  Operador Logístico (Roteirização)
+**Tarefa:** Login > Roteirizador > Gerar Viagem.
+**Ponto de Sucesso:** Confirmação de viagem gerada ou tela de edição da rota.
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 3min |
+| **Erros** | Tentou cadastrar a viagem na aba "Viagens" em vez de "Roteirizador". |
+| **Localização** | Encontrou o botão “Gerar viagem” intuitivamente, pois está em destaque. |
+
+---
+
+###  Administrador
+**Tarefa:** Login > Menu Usuários > Criar novo usuário.
+**Ponto de Sucesso:** Inclusão do novo perfil na listagem de usuários.
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 1min 15seg |
+| **Segurança** | O rótulo “Papel” (para nível de acesso) não foi entendido imediatamente. |
+| **Interface** | Fluxo destacado, mas o ícone de cadeado no botão de gravação gerou dúvida. |
+
+---
+
+###  Motorista
+**Tarefa:** Login > Acessar Viagens > Registrar entrega realizada.
+**Ponto de Sucesso:** Alteração do status da viagem para "Entregue/Finalizada".
+
+| Métrica | Registro da Atividade |
+| :--- | :--- |
+| **Tempo** | 3min |
+| **Usabilidade** | Botões grandes o suficiente. Crítica: cards na tela inicial parecem botões, causando confusão e o usuário não teve certeza em como prosseguir para as viagens abertas. |
+| **Feedback** | Sentiu confiança; o feedback de salvamento foi claro. |
+
+---
+
+## 3. Análise Geral
+
+Os testes demonstraram que o sistema **Log Brasil** é funcional e possui alta taxa de sucesso. Contudo, perfis como **Motorista** e **Operador Logístico** apresentaram tempos elevados (3min), indicando maior esforço cognitivo em fluxos complexos.
+
+### Principais Problemas
+1.  **Terminologia:** Rótulos como "Papel" e a distinção entre "Viagens" e "Roteirizador" causaram confusão.
+2.  **Hierarquia Visual:** Botões críticos como "Buscar Coordenadas" e "Ver Apontamentos" precisam de mais destaque.
+3.  **Ambiguidade:** Elementos visuais que parecem botões (mas não são) dificultaram a navegação do motorista.
+
+### Ações Corretivas (a serem realizadas na proxima etapa).
+* Ajuste de rótulos para termos mais intuitivos.
+* Redesenho de botões críticos para maior visibilidade.
+* Simplificação de formulários, tornando campos secundários opcionais.
+  
+---
+
+## 4. Referências
+
+* NIELSEN, Jakob. **Thinking Aloud: The #1 Usability Tool**. Nielsen Norman Group, 2012. Disponível em: [NNGroup](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/). Acesso em: 08 mai. 2026.
