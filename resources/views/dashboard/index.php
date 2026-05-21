@@ -22,7 +22,7 @@ use App\Core\Helpers;
         </p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
             <a href="<?= htmlspecialchars(CONF_BASE_URL . '/pedidos') ?>" class="lb-btn lb-btn-primary"><i class="fa-solid fa-plus"></i> Novo pedido</a>
-            <a href="<?= htmlspecialchars(CONF_BASE_URL . '/roteirizador') ?>" class="lb-btn lb-btn-secondary"><i class="fa-solid fa-draw-polygon"></i> Roteirizar</a>
+            <a href="<?= htmlspecialchars(CONF_BASE_URL . '/roteirizador') ?>" class="lb-btn lb-btn-secondary" title="Gerar viagens a partir dos pedidos — não confundir com Execução (abertas)"><i class="fa-solid fa-draw-polygon"></i> Planejar rotas</a>
         </div>
     </article>
     <figure>

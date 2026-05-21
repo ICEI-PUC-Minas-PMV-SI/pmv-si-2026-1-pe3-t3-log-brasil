@@ -316,7 +316,7 @@ View: `resources/views/monitoramento/divergencias.php`.
 | POST | `/api/motorista/indo` | Marca parada como “indo”. |
 | POST | `/api/motorista/divergencia` | Abre divergência na parada. |
 | POST | `/api/motorista/viagem-finalizar` | Finaliza viagem (regras operacionais + motorista autorizado). |
-| POST | `/api/motorista/concluir` | `multipart/form-data` — conclui entrega (foto, assinatura, nome). |
+| POST | `/api/motorista/concluir` | `multipart/form-data` — conclui entrega (foto, assinatura, nome, **GPS obrigatório**: `entrega_latitude`, `entrega_longitude`, opcional `entrega_geo_precisao_m`). |
 
 ### 3.6 Pedidos
 
@@ -461,7 +461,7 @@ Views: `resources/views/viagens/abertas.php`, `finalizadas.php`; lógica de moda
 | `motorista/viagens` | Lista com resumo `_vp_*` via `Viagem::listarAbertasPorMotorista`. |
 | `motorista/viagem` | Tabs lista/mapa Leaflet; `Viagem::pedidosDaViagem`; finalizar viagem chamando API. |
 | `motorista/parada` | Itens (`Pedido`/itens), botões Indo/Divergência → APIs JSON; links para entrega quando em rota. |
-| `motorista/entrega` | Canvas assinatura + upload foto + `POST /api/motorista/concluir` (`Viagem::concluirParada`, arquivos em `public/uploads/entregas/`). |
+| `motorista/entrega` | RF07/RF08: assinatura, foto, GPS automático no confirmar + `POST /api/motorista/concluir` (`Viagem::concluirParada` com coordenadas, arquivos em `public/uploads/entregas/`). |
 
 **Persistência importante** (`schema` `viagem_pedidos`): `estado_parada`, `indo_em`, `recebedor_nome`, `foto_mercadoria`, `assinatura_png` (path relativo), `entregue_em`, vínculo `divergencia_id`.
 
@@ -614,6 +614,7 @@ Cada item do array **`pedidos`** combina linhas de **`pedidos`** + **`viagem_ped
   - `parada_estado` (`pendente` \| `indo` \| `entrega_feita` \| `divergencia_aguardando` \| `resolvido_divergencia`)
   - `parada_indo_em`, `parada_entregue_em`
   - `parada_recebedor_nome`, `parada_foto_mercadoria`, `parada_assinatura_png` (paths relativos sob `uploads/` ou PNG salvo pelo motorista)
+  - `parada_entrega_latitude`, `parada_entrega_longitude`, `parada_entrega_geo_precisao_m`, `parada_entrega_geo_capturada_em` (RF08)
 
 O front-end (`lbFmtTs`, `lbUploadOrDataMediaUrl` em `logbrasil.js`) formata datas e monta URLs de imagem sobre `CONF_BASE_URL`.
 

@@ -101,4 +101,27 @@ final class Helpers
 
         return $subdir . '/' . $nome;
     }
+
+    /** Rótulo amigável do perfil de acesso (painel). */
+    public static function papelRotulo(string $papel): string
+    {
+        return match ($papel) {
+            'admin' => 'Administrador',
+            'gestor' => 'Gestor operacional',
+            'monitoramento' => 'Monitoramento',
+            'roteirizador' => 'Planejamento de rotas',
+            'cliente' => 'Cliente (portal)',
+            'motorista' => 'Motorista (app)',
+            default => $papel,
+        };
+    }
+
+    /** @return list<array{value: string, label: string}> */
+    public static function papeisFormulario(): array
+    {
+        return array_map(
+            static fn (string $p): array => ['value' => $p, 'label' => self::papelRotulo($p)],
+            ['admin', 'gestor', 'monitoramento', 'roteirizador', 'cliente', 'motorista'],
+        );
+    }
 }

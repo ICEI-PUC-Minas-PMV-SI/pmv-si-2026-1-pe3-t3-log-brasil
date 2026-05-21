@@ -18,7 +18,7 @@ use App\Core\Helpers;
         <tr>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Papel</th>
+            <th>Perfil de acesso</th>
             <th>CPF acompanh.</th>
             <th>Ativo</th>
         </tr>
@@ -33,7 +33,7 @@ use App\Core\Helpers;
             <tr>
                 <td><?= Helpers::e((string) ($row['nome_completo'] ?? '')) ?></td>
                 <td><?= Helpers::e((string) ($row['email'] ?? '')) ?></td>
-                <td><?= Helpers::e((string) ($row['papel'] ?? '')) ?></td>
+                <td><?= Helpers::e(Helpers::papelRotulo((string) ($row['papel'] ?? ''))) ?></td>
                 <td><?= Helpers::e((string) ($row['acompanhar_cpf'] ?? '') ?: '—') ?></td>
                 <td><?= $ativoSim ? 'Sim' : 'Não' ?></td>
             </tr>
@@ -58,15 +58,15 @@ use App\Core\Helpers;
             <label class="lb-muted" style="display:block;margin-top:12px">Senha (mínimo 8)</label>
             <input class="lb-input" id="u-senha" type="password" autocomplete="new-password" required>
 
-            <label class="lb-muted" style="display:block;margin-top:12px">Papel</label>
-            <select class="lb-input" id="u-papel">
-                <?php foreach ($papeis ?? [] as $p): ?>
-                    <option value="<?= Helpers::e($p) ?>"><?= Helpers::e($p) ?></option>
+            <label class="lb-muted" style="display:block;margin-top:12px">Perfil de acesso</label>
+            <select class="lb-input" id="u-papel" title="Define o que o usuário pode fazer no painel">
+                <?php foreach (Helpers::papeisFormulario() as $pf): ?>
+                    <option value="<?= Helpers::e($pf['value']) ?>"><?= Helpers::e($pf['label']) ?></option>
                 <?php endforeach; ?>
             </select>
 
             <div id="u-cpf-row" style="display:none;margin-top:12px">
-                <label class="lb-muted">CPF cliente (somente papel cliente)</label>
+                <label class="lb-muted">CPF cliente (somente perfil Cliente portal)</label>
                 <input class="lb-input" id="u-cliente-cpf" inputmode="numeric" maxlength="14" placeholder="11 dígitos">
             </div>
 

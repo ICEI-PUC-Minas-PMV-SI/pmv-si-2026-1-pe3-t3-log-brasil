@@ -133,7 +133,11 @@ SQL;
               vp.foto_mercadoria AS parada_foto_mercadoria,
               vp.entregue_em AS parada_entregue_em,
               vp.divergencia_id AS parada_divergencia_id,
-              vp.assinatura_png AS parada_assinatura_png
+              vp.assinatura_png AS parada_assinatura_png,
+              vp.entrega_latitude AS parada_entrega_latitude,
+              vp.entrega_longitude AS parada_entrega_longitude,
+              vp.entrega_geo_precisao_m AS parada_entrega_geo_precisao_m,
+              vp.entrega_geo_capturada_em AS parada_entrega_geo_capturada_em
             FROM viagem_pedidos vp
             JOIN pedidos p ON p.id = vp.pedido_id
             WHERE vp.viagem_id = ?
@@ -320,13 +324,14 @@ SQL;
         ?int $usuarioId,
         ?int $motoristaId,
         string $revisaoEstadoInicial,
+        ?string $fotoUrl = null,
     ): int|false {
         $st = Database::pdo()->prepare(
-            'INSERT INTO divergencias_entrega (viagem_id, pedido_id, descricao, origem_usuario_id, motorista_id, revisao_estado)
-             VALUES (?,?,?,?,?,?)
+            'INSERT INTO divergencias_entrega (viagem_id, pedido_id, descricao, foto_url, origem_usuario_id, motorista_id, revisao_estado)
+             VALUES (?,?,?,?,?,?,?)
              RETURNING id'
         );
-        $ok = $st->execute([$viagemId, $pedidoId, $texto, $usuarioId, $motoristaId, $revisaoEstadoInicial]);
+        $ok = $st->execute([$viagemId, $pedidoId, $texto, $fotoUrl, $usuarioId, $motoristaId, $revisaoEstadoInicial]);
         if (! $ok) {
             return false;
         }
@@ -368,22 +373,45 @@ SQL;
         return $st->rowCount() > 0;
     }
 
-    public static function concluirParada(int $viagemId, int $pedidoId, string $nomeRecebedor, string $fotoPath, string $assinaturaDataUrl): bool
-    {
+    public static function concluirParada(
+        int $viagemId,
+        int $pedidoId,
+        string $nomeRecebedor,
+        string $fotoPath,
+        string $assinaturaDataUrl,
+        float $entregaLatitude,
+        float $entregaLongitude,
+        ?float $entregaGeoPrecisaoM = null,
+    ): bool {
         $pdo = Database::pdo();
         $st = $pdo->prepare(
             "UPDATE viagem_pedidos SET estado_parada='entrega_feita', recebedor_nome=?, foto_mercadoria=?,
-               assinatura_png=?, entregue_em=NOW()
+               assinatura_png=?, entregue_em=NOW(),
+               entrega_latitude=?, entrega_longitude=?, entrega_geo_precisao_m=?, entrega_geo_capturada_em=NOW()
              WHERE viagem_id=? AND pedido_id=? AND estado_parada='indo'"
         );
-        $st->execute([$nomeRecebedor, $fotoPath, $assinaturaDataUrl, $viagemId, $pedidoId]);
+        $st->execute([
+            $nomeRecebedor,
+            $fotoPath,
+            $assinaturaDataUrl,
+            $entregaLatitude,
+            $entregaLongitude,
+            $entregaGeoPrecisaoM,
+            $viagemId,
+            $pedidoId,
+        ]);
 
         return $st->rowCount() > 0;
     }
 
     /** @return positive-int|false */
-    public static function abrirDivergenciaParada(int $viagemId, int $pedidoId, int $motoristaId, string $descricao): int|false
-    {
+    public static function abrirDivergenciaParada(
+        int $viagemId,
+        int $pedidoId,
+        int $motoristaId,
+        string $descricao,
+        ?string $fotoUrl = null,
+    ): int|false {
         $pdo = Database::pdo();
         $pdo->beginTransaction();
         try {
@@ -393,7 +421,8 @@ SQL;
                 $descricao,
                 null,
                 $motoristaId,
-                'pendente_aprovacao'
+                'pendente_aprovacao',
+                $fotoUrl,
             );
             if ($idFlex === false) {
                 $pdo->rollBack();

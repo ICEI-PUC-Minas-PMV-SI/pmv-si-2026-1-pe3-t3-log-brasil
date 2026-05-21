@@ -274,7 +274,7 @@ final class MotoristaPortalController extends Controller
         }
 
         View::render('motorista/parada', [
-            'title' => 'Entrega',
+            'title' => 'Parada — entrega ou ocorrência',
             'navMot' => 'viagens',
             'motorista' => self::sanitizeMotorista($m),
             'v' => Viagem::encontrar($vid),
@@ -306,7 +306,7 @@ final class MotoristaPortalController extends Controller
         }
 
         View::render('motorista/entrega', [
-            'title' => 'Registrar entrega',
+            'title' => 'Comprovante de entrega (RF07)',
             'navMot' => 'viagens',
             'motorista' => self::sanitizeMotorista($m),
             'v' => Viagem::encontrar($vid),
@@ -338,25 +338,46 @@ final class MotoristaPortalController extends Controller
     public function apiDivergencia(): void
     {
         $m = $this->requireMotoristaSessao();
-        $payload = json_decode((string) file_get_contents('php://input'), true) ?: [];
-        $this->denyUnlessCsrf($payload['_csrf'] ?? null);
 
-        $vid = (int) ($payload['viagem_id'] ?? 0);
-        $pid = (int) ($payload['pedido_id'] ?? 0);
-        $txt = trim((string) ($payload['descricao'] ?? ''));
+        if (! empty($_POST['_csrf'])) {
+            $this->denyUnlessCsrf($_POST['_csrf'] ?? null);
+            $vid = (int) ($_POST['viagem_id'] ?? 0);
+            $pid = (int) ($_POST['pedido_id'] ?? 0);
+            $txt = trim((string) ($_POST['descricao'] ?? ''));
+        } else {
+            $payload = json_decode((string) file_get_contents('php://input'), true) ?: [];
+            $this->denyUnlessCsrf($payload['_csrf'] ?? null);
+            $vid = (int) ($payload['viagem_id'] ?? 0);
+            $pid = (int) ($payload['pedido_id'] ?? 0);
+            $txt = trim((string) ($payload['descricao'] ?? ''));
+        }
 
         if ($txt === '') {
-            Helpers::jsonResponse(['ok' => false, 'message' => 'Descreva a divergência'], 422);
+            Helpers::jsonResponse(['ok' => false, 'message' => 'Descreva a ocorrência'], 422);
         }
         if (! Viagem::garantirMotoristaDaViagem($vid, (int) $m['id'])) {
             Helpers::jsonResponse(['ok' => false, 'message' => 'Não autorizado'], 403);
         }
 
-        $idDiv = Viagem::abrirDivergenciaParada($vid, $pid, (int) $m['id'], $txt);
+        $fotoRel = null;
+        if (isset($_FILES['foto_ocorrencia']) && is_array($_FILES['foto_ocorrencia'])) {
+            try {
+                $fotoRel = Helpers::saveUploadedSecure(
+                    $_FILES['foto_ocorrencia'],
+                    'entregas',
+                    ['image/jpeg', 'image/png', 'image/webp'],
+                    8_000_000
+                );
+            } catch (\Throwable) {
+                Helpers::jsonResponse(['ok' => false, 'message' => 'Foto da ocorrência inválida ou muito grande'], 422);
+            }
+        }
+
+        $idDiv = Viagem::abrirDivergenciaParada($vid, $pid, (int) $m['id'], $txt, $fotoRel);
         Helpers::jsonResponse([
             'ok' => $idDiv !== false,
             'divergencia_id' => $idDiv ?: null,
-            'message' => $idDiv === false ? 'Não foi possível registrar divergência' : null,
+            'message' => $idDiv === false ? 'Não foi possível registrar a ocorrência' : null,
         ]);
     }
 
@@ -422,7 +443,18 @@ final class MotoristaPortalController extends Controller
             Helpers::jsonResponse(['ok' => false, 'message' => 'Assinatura inválida'], 422);
         }
 
-        $ok = Viagem::concluirParada($vid, $pid, $nomeR, $relFoto, $sigRel);
+        $lat = filter_var($_POST['entrega_latitude'] ?? null, FILTER_VALIDATE_FLOAT);
+        $lng = filter_var($_POST['entrega_longitude'] ?? null, FILTER_VALIDATE_FLOAT);
+        if ($lat === false || $lng === false || abs($lat) > 90 || abs($lng) > 180) {
+            Helpers::jsonResponse([
+                'ok' => false,
+                'message' => 'Localização GPS obrigatória. Ative o GPS do aparelho e tente novamente.',
+            ], 422);
+        }
+        $prec = filter_var($_POST['entrega_geo_precisao_m'] ?? null, FILTER_VALIDATE_FLOAT);
+        $precOk = ($prec !== false && $prec >= 0) ? (float) $prec : null;
+
+        $ok = Viagem::concluirParada($vid, $pid, $nomeR, $relFoto, $sigRel, (float) $lat, (float) $lng, $precOk);
 
         Helpers::jsonResponse([
             'ok' => $ok,

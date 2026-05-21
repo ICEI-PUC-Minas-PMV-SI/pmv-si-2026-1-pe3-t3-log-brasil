@@ -36,8 +36,8 @@ $baseSafe = htmlspecialchars(CONF_BASE_URL, ENT_QUOTES);
         <a class="<?= $isNav('inicio') ?>" href="<?= $baseSafe ?>/inicio"><i class="fa-solid fa-chart-line"></i> Início</a>
 
         <?php if ($monitorSomente): ?>
-            <a class="<?= $isNav('viagens_abertas') ?>" href="<?= $baseSafe ?>/viagens/abertas"><i class="fa-solid fa-clock"></i> Viagens abertas</a>
-            <a class="<?= $isNav('viagens_final') ?>" href="<?= $baseSafe ?>/viagens/finalizadas"><i class="fa-solid fa-circle-check"></i> Finalizadas</a>
+            <a class="<?= $isNav('viagens_abertas') ?>" href="<?= $baseSafe ?>/viagens/abertas" title="Acompanhar viagens já geradas em execução"><i class="fa-solid fa-clock"></i> Execução (abertas)</a>
+            <a class="<?= $isNav('viagens_final') ?>" href="<?= $baseSafe ?>/viagens/finalizadas" title="Histórico e comprovantes de entrega"><i class="fa-solid fa-circle-check"></i> Histórico</a>
             <?php if ($linksRevDiv): ?>
                 <a class="<?= $isNav('monitoramento_div') ?>" href="<?= $baseSafe ?>/monitoramento/divergencias"><i class="fa-solid fa-triangle-exclamation"></i> Divergências</a>
             <?php endif; ?>
@@ -47,11 +47,11 @@ $baseSafe = htmlspecialchars(CONF_BASE_URL, ENT_QUOTES);
                 <a class="<?= $isNav('rotas') ?>" href="<?= $baseSafe ?>/rotas"><i class="fa-solid fa-map-location-dot"></i> Rotas</a>
                 <a class="<?= $isNav('veiculos') ?>" href="<?= $baseSafe ?>/veiculos"><i class="fa-solid fa-truck-moving"></i> Veículos</a>
                 <a class="<?= $isNav('motoristas') ?>" href="<?= $baseSafe ?>/motoristas"><i class="fa-solid fa-id-card"></i> Motoristas</a>
-                <a class="<?= $isNav('roteirizador') ?>" href="<?= $baseSafe ?>/roteirizador"><i class="fa-solid fa-bezier-curve"></i> Roteirizador</a>
+                <a class="<?= $isNav('roteirizador') ?>" href="<?= $baseSafe ?>/roteirizador" title="Montar rotas e gerar viagens a partir dos pedidos"><i class="fa-solid fa-bezier-curve"></i> Planejar rotas</a>
                 <a class="<?= $isNav('unidade') ?>" href="<?= $baseSafe ?>/unidade"><i class="fa-solid fa-warehouse"></i> Unidade</a>
             <?php endif; ?>
-            <a class="<?= $isNav('viagens_abertas') ?>" href="<?= $baseSafe ?>/viagens/abertas"><i class="fa-solid fa-clock"></i> Viagens abertas</a>
-            <a class="<?= $isNav('viagens_final') ?>" href="<?= $baseSafe ?>/viagens/finalizadas"><i class="fa-solid fa-circle-check"></i> Finalizadas</a>
+            <a class="<?= $isNav('viagens_abertas') ?>" href="<?= $baseSafe ?>/viagens/abertas" title="Acompanhar viagens já geradas em execução"><i class="fa-solid fa-clock"></i> Execução (abertas)</a>
+            <a class="<?= $isNav('viagens_final') ?>" href="<?= $baseSafe ?>/viagens/finalizadas" title="Histórico e comprovantes de entrega"><i class="fa-solid fa-circle-check"></i> Histórico</a>
             <?php if ($linksRevDiv): ?>
                 <a class="<?= $isNav('monitoramento_div') ?>" href="<?= $baseSafe ?>/monitoramento/divergencias"><i class="fa-solid fa-triangle-exclamation"></i> Divergências</a>
             <?php endif; ?>
@@ -87,10 +87,10 @@ $baseSafe = htmlspecialchars(CONF_BASE_URL, ENT_QUOTES);
         'csrf' => Helpers::csrfToken(),
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_APOS) ?>;
 </script>
-<script defer src="<?= htmlspecialchars(CONF_BASE_URL, ENT_QUOTES) ?>/assets/js/logbrasil.js?v=8"></script>
+<script defer src="<?= htmlspecialchars(CONF_BASE_URL, ENT_QUOTES) ?>/assets/js/logbrasil.js?v=9"></script>
 <?php if (! empty($extraScripts ?? '')): ?>
     <?= $extraScripts ?>
 <?php endif; ?>
 </body>
 </html>
-
+

@@ -30,6 +30,28 @@
     return m[e] || lbEsc(String(e || "—"));
   }
 
+  /** Distância em metros (Haversine) entre dois pontos WGS84. */
+  function lbHaversineMetros(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const rad = (d) => (d * Math.PI) / 180;
+    const dLat = rad(lat2 - lat1);
+    const dLon = rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLon / 2) ** 2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function lbCoordsValidas(lat, lng) {
+    const la = parseFloat(lat);
+    const ln = parseFloat(lng);
+    if (Number.isNaN(la) || Number.isNaN(ln)) return false;
+    if (Math.abs(la) < 0.00001 && Math.abs(ln) < 0.00001) return false;
+    return Math.abs(la) <= 90 && Math.abs(ln) <= 180;
+  }
+
+  const LB_RAIO_ENTREGA_M = 100;
+
   /** Caminho relativo em uploads ou data URL já salva legacy. */
   function lbUploadOrDataMediaUrl(rel) {
     if (!rel) return "";
@@ -1131,6 +1153,35 @@
 
     nf.textContent = "NF / Pedido " + String(p.numero_pedido ?? "—");
 
+    const geoWrap = document.getElementById("v2-ap-geo-wrap");
+    const geoEl = document.getElementById("v2-ap-geo");
+    const lat = parseFloat(p.parada_entrega_latitude);
+    const lng = parseFloat(p.parada_entrega_longitude);
+    if (geoWrap && geoEl) {
+      if (lbCoordsValidas(lat, lng)) {
+        geoWrap.style.display = "";
+        let gtxt = lat.toFixed(5) + ", " + lng.toFixed(5);
+        const acc = parseFloat(p.parada_entrega_geo_precisao_m);
+        if (!Number.isNaN(acc) && acc > 0) gtxt += " (precisão ~" + Math.round(acc) + " m)";
+        if (p.parada_entrega_geo_capturada_em) gtxt += " · " + lbFmtTs(p.parada_entrega_geo_capturada_em);
+        const clat = parseFloat(p.latitude);
+        const clng = parseFloat(p.longitude);
+        if (lbCoordsValidas(clat, clng)) {
+          const dist = lbHaversineMetros(clat, clng, lat, lng);
+          const dentro = dist <= LB_RAIO_ENTREGA_M;
+          gtxt +=
+            " · Distância ao cliente: " +
+            Math.round(dist) +
+            " m — " +
+            (dentro ? "dentro do raio de " + LB_RAIO_ENTREGA_M + " m" : "fora do raio de " + LB_RAIO_ENTREGA_M + " m");
+        }
+        geoEl.textContent = gtxt;
+      } else {
+        geoWrap.style.display = "none";
+        geoEl.textContent = "";
+      }
+    }
+
     const tem =
       !!(p.parada_recebedor_nome || p.parada_entregue_em || p.parada_foto_mercadoria || p.parada_assinatura_png);
     if (!tem) {
@@ -1210,7 +1261,9 @@
         const d = await lbJson("/api/viagem/" + id + "/pedidos");
         document.getElementById("modal-v2-mapa").classList.add("is-open");
         const el = document.getElementById("map-viagem2");
+        const legEl = document.getElementById("v2-mapa-legenda");
         el.innerHTML = "";
+        if (legEl) legEl.innerHTML = "";
         await new Promise((r) => setTimeout(r, 50));
         if (mapV2) mapV2.remove();
         mapV2 = null;
@@ -1218,13 +1271,101 @@
         const m = L.map(el).setView([-14.235, -51.9253], 5);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m);
         const grp = [];
+        const linhasLeg = [];
+
         (d.pedidos || []).forEach((p) => {
-          if (!p.latitude || !p.longitude) return;
-          const mk = L.marker([p.latitude, p.longitude]).bindPopup("#" + p.numero_pedido);
-          mk.addTo(m);
-          grp.push(mk);
+          const clat = parseFloat(p.latitude);
+          const clng = parseFloat(p.longitude);
+          const mlat = parseFloat(p.parada_entrega_latitude);
+          const mlng = parseFloat(p.parada_entrega_longitude);
+          const nf = lbEsc(p.numero_pedido || "—");
+          const temCliente = lbCoordsValidas(clat, clng);
+          const temMotorista =
+            p.parada_estado === "entrega_feita" && lbCoordsValidas(mlat, mlng);
+
+          if (!temCliente && !temMotorista) return;
+
+          if (temCliente) {
+            L.circle([clat, clng], {
+              radius: LB_RAIO_ENTREGA_M,
+              color: "#64748b",
+              weight: 1.5,
+              dashArray: "6 4",
+              fillColor: "#94a3b8",
+              fillOpacity: 0.12,
+            })
+              .bindPopup(`<strong>NF ${nf}</strong><br>Raio aceito: ${LB_RAIO_ENTREGA_M} m (endereço do cliente)`)
+              .addTo(m);
+
+            const mkC = L.circleMarker([clat, clng], {
+              radius: 9,
+              color: "#1e40af",
+              weight: 2,
+              fillColor: "#3b82f6",
+              fillOpacity: 0.95,
+            }).bindPopup(
+              `<strong>Cliente</strong> — NF ${nf}<br>${lbEsc(p.nome_destinatario || "")}<br>Lat ${clat.toFixed(5)}, Lng ${clng.toFixed(5)}`
+            );
+            mkC.addTo(m);
+            grp.push(mkC);
+            grp.push(L.circle([clat, clng], { radius: LB_RAIO_ENTREGA_M }));
+          }
+
+          if (temMotorista) {
+            let distTxt = "—";
+            let raioTxt = "Sem coordenada do cliente para comparar";
+            let dentro = null;
+            if (temCliente) {
+              const dist = lbHaversineMetros(clat, clng, mlat, mlng);
+              distTxt = Math.round(dist) + " m";
+              dentro = dist <= LB_RAIO_ENTREGA_M;
+              raioTxt = dentro
+                ? `<span style="color:#15803d;font-weight:700">Dentro do raio (≤ ${LB_RAIO_ENTREGA_M} m)</span>`
+                : `<span style="color:#b45309;font-weight:700">Fora do raio (&gt; ${LB_RAIO_ENTREGA_M} m)</span>`;
+              L.polyline(
+                [
+                  [clat, clng],
+                  [mlat, mlng],
+                ],
+                { color: dentro ? "#16a34a" : "#ea580c", weight: 2, dashArray: "4 6", opacity: 0.85 }
+              ).addTo(m);
+            }
+
+            const mkM = L.circleMarker([mlat, mlng], {
+              radius: 9,
+              color: "#166534",
+              weight: 2,
+              fillColor: "#22c55e",
+              fillOpacity: 0.95,
+            }).bindPopup(
+              `<strong>Motorista (apontamento)</strong> — NF ${nf}<br>Lat ${mlat.toFixed(5)}, Lng ${mlng.toFixed(5)}<br>` +
+                (temCliente ? `Distância ao cliente: <strong>${distTxt}</strong><br>${raioTxt}` : "")
+            );
+            mkM.addTo(m);
+            grp.push(mkM);
+
+            linhasLeg.push(
+              `<div style="margin-bottom:6px;padding:6px 8px;border-radius:8px;background:rgba(0,0,50,.04)">` +
+                `<strong>NF ${nf}</strong> — ${lbEsc(p.nome_destinatario || "")}<br>` +
+                (temCliente
+                  ? `Distância: <strong>${distTxt}</strong> · ${dentro ? "✓ Dentro do raio" : "⚠ Fora do raio"}`
+                  : "GPS do motorista sem coordenada de cliente") +
+                `</div>`
+            );
+          } else if (temCliente && p.parada_estado === "entrega_feita") {
+            linhasLeg.push(
+              `<div style="margin-bottom:6px;color:#6b7280">NF ${nf}: entregue sem GPS de apontamento (RF08).</div>`
+            );
+          }
         });
-        if (grp.length) m.fitBounds(L.featureGroup(grp).getBounds().pad(0.2));
+
+        if (legEl) {
+          legEl.innerHTML =
+            linhasLeg.length > 0
+              ? "<strong style='display:block;margin-bottom:6px'>Resumo por parada</strong>" + linhasLeg.join("")
+              : "<em>Nenhuma parada com coordenadas para exibir.</em>";
+        }
+        if (grp.length) m.fitBounds(L.featureGroup(grp).getBounds().pad(0.25));
         mapV2 = m;
       })
     );

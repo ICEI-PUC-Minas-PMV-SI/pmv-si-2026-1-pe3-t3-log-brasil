@@ -14,7 +14,7 @@ $isMot = fn (string $k): string => ($navMot === $k ? 'lb-mot-nav-btn is-active' 
     <meta name="csrf" content="<?= Helpers::csrfToken() ?>">
     <title><?= Helpers::e($title ?? 'Motorista') ?></title>
     <link rel="icon" type="image/png" href="<?= htmlspecialchars($base . '/assets/favicon.ico', ENT_QUOTES) ?>">
-    <link rel="stylesheet" href="<?= htmlspecialchars($base . '/assets/css/lb-portais-mobile.css', ENT_QUOTES) ?>?v=4">
+    <link rel="stylesheet" href="<?= htmlspecialchars($base . '/assets/css/lb-portais-mobile.css', ENT_QUOTES) ?>?v=5">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
     <?php if (! empty($leafletHead ?? '')): ?>

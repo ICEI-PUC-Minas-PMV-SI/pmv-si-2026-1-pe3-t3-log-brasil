@@ -282,6 +282,10 @@ CREATE TABLE IF NOT EXISTS public.viagem_pedidos (
     foto_mercadoria          VARCHAR(520),
     assinatura_png           TEXT,
     entregue_em              TIMESTAMPTZ,
+    entrega_latitude         DOUBLE PRECISION,
+    entrega_longitude        DOUBLE PRECISION,
+    entrega_geo_precisao_m   DOUBLE PRECISION,
+    entrega_geo_capturada_em TIMESTAMPTZ,
     divergencia_id           BIGINT REFERENCES public.divergencias_entrega (id) ON DELETE SET NULL,
     UNIQUE (viagem_id, pedido_id)
 );

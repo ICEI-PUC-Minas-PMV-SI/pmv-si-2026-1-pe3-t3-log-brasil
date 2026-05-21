@@ -42,8 +42,8 @@ $totalAbertas = count($abertas);
         </div>
     </div>
 
-    <div class="lb-mot-stat-grid">
-        <div class="lb-mot-stat">
+    <div class="lb-mot-stat-grid" aria-label="Resumo informativo (não clicável)">
+        <div class="lb-mot-stat" aria-hidden="false">
             <b><?= $totalAbertas ?></b>
             <span>Viagens abertas</span>
         </div>
@@ -52,7 +52,7 @@ $totalAbertas = count($abertas);
             <span>Última viagem #</span>
         </div>
         <div class="lb-mot-stat">
-            <b><i class="fa-solid fa-shield-heart" style="opacity:.75"></i></b>
+            <b><i class="fa-solid fa-shield-heart" style="opacity:.75" aria-hidden="true"></i></b>
             <span>Conta ativa</span>
         </div>
     </div>

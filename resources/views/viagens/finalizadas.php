@@ -80,6 +80,10 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
                     <span class="lb-muted" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.04em">Data e hora do registro</span>
                     <div id="v2-ap-dt" style="font-weight:650;margin-top:4px"></div>
                 </div>
+                <div style="margin-bottom:12px" id="v2-ap-geo-wrap">
+                    <span class="lb-muted" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.04em">Local GPS na entrega</span>
+                    <div id="v2-ap-geo" style="font-weight:650;margin-top:4px;font-size:.92rem"></div>
+                </div>
                 <div style="margin-bottom:14px">
                     <span class="lb-muted" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.04em">Foto da mercadoria</span>
                     <div style="margin-top:8px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.1);background:#f4f4f4">
@@ -98,11 +102,19 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
 </div>
 
 <div id="modal-v2-mapa" class="lb-modal-mask">
-    <div class="lb-modal" style="max-width:900px">
+    <div class="lb-modal" style="max-width:960px">
         <div class="lb-modal-head">
-            <strong>Mapa</strong>
+            <strong>Mapa — cliente × apontamento GPS (raio 100 m)</strong>
             <button type="button" class="lb-btn lb-btn-quiet lb-modal-close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div class="lb-modal-body"><div id="map-viagem2" style="height:440px;border-radius:10px"></div></div>
+        <div class="lb-modal-body">
+            <p class="lb-muted" style="margin:0 0 10px;font-size:.82rem;line-height:1.45">
+                <span style="display:inline-flex;align-items:center;gap:6px;margin-right:12px"><i class="fa-solid fa-circle" style="color:#2563eb;font-size:.65rem"></i> Cliente (cadastro)</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;margin-right:12px"><i class="fa-solid fa-circle" style="color:#16a34a;font-size:.65rem"></i> Motorista (na entrega)</span>
+                <span style="display:inline-flex;align-items:center;gap:6px"><i class="fa-regular fa-circle" style="color:#64748b;font-size:.65rem"></i> Raio 100 m</span>
+            </p>
+            <div id="map-viagem2" style="height:400px;border-radius:10px;border:1px solid rgba(0,0,50,.08)"></div>
+            <div id="v2-mapa-legenda" class="lb-muted" style="margin-top:12px;font-size:.8rem;line-height:1.5;max-height:140px;overflow-y:auto"></div>
+        </div>
     </div>
 </div>
