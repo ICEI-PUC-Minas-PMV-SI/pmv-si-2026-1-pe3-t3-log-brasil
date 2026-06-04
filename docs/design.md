@@ -198,7 +198,7 @@ Este documento apresenta os resultados do teste de usabilidade realizado com o p
 
 ## 3. Análise Geral
 
-Os testes demonstraram que o sistema **Log Brasil** é funcional e possui alta taxa de sucesso. Contudo, perfis como **Motorista** e **Operador Logístico** apresentaram tempos elevados (3min), indicando maior esforço cognitivo em fluxos complexos.
+Os seis participantes concluíram as tarefas principais (taxa de sucesso 100%). Isso não significa ausência de problemas de usabilidade: apresentaram erros de navegação/terminologia, indicando esforço cognitivo e falhas de correspondência com o mundo real, consistência, feedback e prevenção de erros.
 
 ### Principais Problemas
 Problema observado / Princípio / heurística / regra afetada 
