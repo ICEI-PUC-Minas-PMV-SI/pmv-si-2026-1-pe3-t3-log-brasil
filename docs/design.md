@@ -51,8 +51,6 @@
 
 ## 4.2 Mapa de empatia
 
-O mapa de empatia é um material utilizado para conhecer melhor o cliente. A partir dele é possível detalhar a personalidade do cliente e compreendê-la melhor. O objetivo é obter um nível mais profundo de compreensão de uma persona. Para cada persona apresentada na seção anterior, segue o respectivo mapa de empatia. Como referência de template, sugere-se o material da RD Station: [Mapa da empatia — RD Station](https://www.rdstation.com/blog/marketing/mapa-da-empatia/).
-
 <a id="mapa-administrador"></a>
 
 ### 4.2.1 Mapa de empatia — Administrador
