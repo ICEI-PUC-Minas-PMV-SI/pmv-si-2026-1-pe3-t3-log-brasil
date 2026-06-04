@@ -93,15 +93,15 @@
 
 Princípio | Aplicação no Log Brasil | Limitação identificada nos testes |
 
-1.Proximidade-Campos do mesmo pedido agrupados no formulário de cadastro; ações da parada (status, comprovante, ocorrência) no mesmo card no app do motorista.
-2.Formulário de pedido longo aumenta carga cognitiva (Operador Logístico).
-3.Similaridade-Chips e badges de status com cores fixas (pendente, em rota, entregue, divergência); botões primários sempre na mesma cor e posição.
-4.Continuidade-Fluxo linear nas telas do motorista: lista de viagens → parada → comprovante ou ocorrência.
-5.Usuário hesitou na home do motorista por elementos que parecem clicáveis (ver Fechamento).
-6.Fechamento-Cards de viagem e de parada delimitados por borda e padding, reunindo título, status e ações em um bloco fechado; modais de confirmação com cabeçalho, corpo e rodapé alinhados. 
-7.Cards de resumo na home do motorista parecem botões fechados/acionáveis, mas não levam a nenhuma ação — violam a expectativa de fechamento funcional. 
-8.Figura-fundo No app do motorista, fundo escuro e cards claros destacam a figura (conteúdo acionável); no painel web, área de conteúdo clara sobre barra lateral mais escura separa navegação do trabalho principal. 
-9.Hierarquia insuficiente em botões secundários críticos (“Buscar coordenadas”, “Ver apontamentos”), que se confundem com o fundo da tela.
+1. Proximidade-Campos do mesmo pedido agrupados no formulário de cadastro; ações da parada (status, comprovante, ocorrência) no mesmo card no app do motorista.
+2. Formulário de pedido longo aumenta carga cognitiva (Operador Logístico).
+3. Similaridade-Chips e badges de status com cores fixas (pendente, em rota, entregue, divergência); botões primários sempre na mesma cor e posição.
+4. Continuidade-Fluxo linear nas telas do motorista: lista de viagens → parada → comprovante ou ocorrência.
+5. Usuário hesitou na home do motorista por elementos que parecem clicáveis (ver Fechamento).
+6. Fechamento-Cards de viagem e de parada delimitados por borda e padding, reunindo título, status e ações em um bloco fechado; modais de confirmação com cabeçalho, corpo e rodapé alinhados. 
+7. Cards de resumo na home do motorista parecem botões fechados/acionáveis, mas não levam a nenhuma ação — violam a expectativa de fechamento funcional. 
+8. Figura-fundo No app do motorista, fundo escuro e cards claros destacam a figura (conteúdo acionável); no painel web, área de conteúdo clara sobre barra lateral mais escura separa navegação do trabalho principal. 
+9. Hierarquia insuficiente em botões secundários críticos (“Buscar coordenadas”, “Ver apontamentos”), que se confundem com o fundo da tela.
 
 ## 4.4 Testes com Protótipos
 
