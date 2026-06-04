@@ -206,10 +206,12 @@ Os testes demonstraram que o sistema **Log Brasil** é funcional e possui alta t
 3.  **Ambiguidade:** Elementos visuais que parecem botões (mas não são) dificultaram a navegação do motorista.
 
 ### Ações Corretivas (a serem realizadas na proxima etapa).
-* Ajuste de rótulos para termos mais intuitivos.
-* Redesenho de botões críticos para maior visibilidade.
-* Simplificação de formulários, tornando campos secundários opcionais.
-  
+1. Renomear “Papel” para “Perfil de acesso” (com texto de ajuda).
+2. Diferenciar menu: ex. “Planejar rotas (Roteirizador)” e “Viagens em execução”; incluir tooltips.
+3. Ajustar cards da home do motorista: remover aparência de botão ou torná-los navegáveis até a lista de viagens abertas.
+4. Substituir ícone de cadeado por rótulo “Salvar usuário” com ícone de disco/check.
+5. Destacar visualmente “Buscar coordenadas” e “Ver apontamentos”; tornar lat/long secundários opcionais quando houver busca por endereço.
+6. Exibir destino final nas listas de viagens do gestor.
 ---
 
 ## 4. Referências
