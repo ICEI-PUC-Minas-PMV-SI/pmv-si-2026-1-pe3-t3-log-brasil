@@ -203,18 +203,18 @@ Os testes demonstraram que o sistema **Log Brasil** é funcional e possui alta t
 ### Principais Problemas
 Problema observado / Princípio / heurística / regra afetada 
 
-Rótulo “Papel” pouco claro.
-Correspondência com o mundo real (Nielsen); reduzir carga de memória (Shneiderman #8).
-“Viagens” vs. “Roteirizador”.
-Consistência e padrões (Nielsen); consistência (Shneiderman #1) .
-Cards da home do motorista parecem botões.
-Fechamento (Gestalt); consistência (Shneiderman #1); controle do usuário (Nielsen).
-Ícone de cadeado no salvar usuário.
-Feedback informativo (Shneiderman #3); ajuda a diagnosticar erros (Nielsen).
-Botões “Buscar coordenadas” e “Ver apontamentos” pouco destacados.
-Figura-fundo (Gestalt); estética e minimalismo (Nielsen).
-Formulário de pedido extenso.
-Flexibilidade/eficiência (Nielsen); prevenir erros (Shneiderman #5).
+1.Rótulo “Papel” pouco claro.
+2.Correspondência com o mundo real (Nielsen); reduzir carga de memória (Shneiderman #8).
+3.“Viagens” vs. “Roteirizador”.
+4.Consistência e padrões (Nielsen); consistência (Shneiderman #1) .
+5.Cards da home do motorista parecem botões.
+6.Fechamento (Gestalt); consistência (Shneiderman #1); controle do usuário (Nielsen).
+7.Ícone de cadeado no salvar usuário.
+8.Feedback informativo (Shneiderman #3); ajuda a diagnosticar erros (Nielsen).
+8.Botões “Buscar coordenadas” e “Ver apontamentos” pouco destacados.
+9.Figura-fundo (Gestalt); estética e minimalismo (Nielsen).
+10.Formulário de pedido extenso.
+11.Flexibilidade/eficiência (Nielsen); prevenir erros (Shneiderman #5).
 
 ### Ações Corretivas (a serem realizadas na proxima etapa).
 1. Renomear “Papel” para “Perfil de acesso” (com texto de ajuda).
