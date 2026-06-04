@@ -201,9 +201,14 @@ Este documento apresenta os resultados do teste de usabilidade realizado com o p
 Os testes demonstraram que o sistema **Log Brasil** é funcional e possui alta taxa de sucesso. Contudo, perfis como **Motorista** e **Operador Logístico** apresentaram tempos elevados (3min), indicando maior esforço cognitivo em fluxos complexos.
 
 ### Principais Problemas
-1.  **Terminologia:** Rótulos como "Papel" e a distinção entre "Viagens" e "Roteirizador" causaram confusão.
-2.  **Hierarquia Visual:** Botões críticos como "Buscar Coordenadas" e "Ver Apontamentos" precisam de mais destaque.
-3.  **Ambiguidade:** Elementos visuais que parecem botões (mas não são) dificultaram a navegação do motorista.
+Problema observado / Princípio / heurística / regra afetada 
+
+ Rótulo “Papel” pouco claro | Correspondência com o mundo real (Nielsen); reduzir carga de memória (Shneiderman #8) |
+“Viagens” vs. “Roteirizador” | Consistência e padrões (Nielsen); consistência (Shneiderman #1) |
+ Cards da home do motorista parecem botões | Fechamento (Gestalt); consistência (Shneiderman #1); controle do usuário (Nielsen) |
+ Ícone de cadeado no salvar usuário | Feedback informativo (Shneiderman #3); ajuda a diagnosticar erros (Nielsen) |
+ Botões “Buscar coordenadas” e “Ver apontamentos” pouco destacados | Figura-fundo (Gestalt); estética e minimalismo (Nielsen) |
+ Formulário de pedido extenso | Flexibilidade/eficiência (Nielsen); prevenir erros (Shneiderman #5) |
 
 ### Ações Corretivas (a serem realizadas na proxima etapa).
 1. Renomear “Papel” para “Perfil de acesso” (com texto de ajuda).
