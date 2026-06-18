@@ -8,7 +8,11 @@ use App\Core\Helpers;
 </section>
 
 <div class="lb-toolbar-cadastro">
-    <div class="lb-grow">
+    <div class="lb-grow" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <div class="lb-quick-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" class="lb-input" placeholder="Buscar rota por nome…" data-lb-table-search="#tbl-rotas" aria-label="Buscar rotas">
+        </div>
         <div class="lb-card" style="padding:12px 16px;margin:0;display:inline-flex;gap:16px;align-items:center">
             <i class="fa-solid fa-route" style="font-size:1.5rem;color:var(--lb-secondary-yellow)"></i>
             <div class="lb-muted">Rotas ativas: <strong style="color:var(--lb-high)"><?= count(array_filter($rotas ?? [], fn($r)=>(bool)$r['ativo'])) ?></strong></div>

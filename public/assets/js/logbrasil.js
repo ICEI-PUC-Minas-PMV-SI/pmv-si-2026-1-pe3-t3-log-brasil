@@ -330,11 +330,23 @@
       };
       if (cpfDig.length === 11) bodyGeo.cpf = cpfDig;
       const gd = await lbJson("/api/endereco-geocode", { method: "POST", body: bodyGeo });
-      if (!gd.ok) return;
+      if (!gd.ok) {
+        alert(gd.message || "Não foi possível obter coordenadas. Verifique o endereço.");
+        return;
+      }
       const las = document.getElementById("pedido-lat");
       const los = document.getElementById("pedido-lng");
-      if (las) las.value = String(gd.latitude);
-      if (los) los.value = String(gd.longitude);
+      if (las) {
+        las.value = String(gd.latitude);
+        las.removeAttribute("readonly");
+      }
+      if (los) {
+        los.value = String(gd.longitude);
+        los.removeAttribute("readonly");
+      }
+      const adv = formPedido.querySelector(".lb-advanced-panel");
+      if (adv && !adv.open) adv.open = true;
+      if (window.LB_UX_TOAST) window.LB_UX_TOAST("Coordenadas obtidas pelo endereço.");
     });
 
     document.getElementById("pedido-cep")?.addEventListener("keydown", function (ev) {
@@ -743,7 +755,9 @@
     const fleet = fleetEl ? JSON.parse(fleetEl.textContent || "{}") : {};
     let state = {
       atualRota: null,
+      rotaNome: "",
       pedidoIds: [],
+      pedidosAll: [],
       coordMap: null,
       lastSeq: [],
     };
@@ -770,7 +784,7 @@
           <div class="lb-route-actions">
             <button type="button" class="lb-btn lb-btn-quiet lb-rot-det" data-id="${c.rota_id}">Detalhes</button>
             <button type="button" class="lb-btn lb-btn-quiet lb-rot-map" data-id="${c.rota_id}">Mapa</button>
-            <button type="button" class="lb-btn lb-btn-secondary lb-rot-viag" data-id="${c.rota_id}">Gerar viagem</button>
+            <button type="button" class="lb-btn lb-btn-secondary lb-rot-viag" data-id="${c.rota_id}"><i class="fa-solid fa-wand-magic-sparkles"></i> Gerar viagem</button>
           </div>`;
         rotCardsRoot.appendChild(el);
       });
@@ -954,11 +968,15 @@
     function prepararViagem(rotaId) {
       lbJson("/api/roteirizador/rota/" + rotaId, { method: "GET" }).then((d) => {
         state.atualRota = rotaId;
-        state.pedidoIds = (d.pedidos || []).map((p) => p.id);
+        state.pedidosAll = d.pedidos || [];
+        state.pedidoIds = state.pedidosAll.map((p) => p.id);
         if (!state.pedidoIds.length) {
-          alert("Sem pedidos pendentes.");
+          alert("Sem pedidos pendentes nesta rota.");
           return;
         }
+        const rotaOpt = (fleet.rotas || []).find((r) => Number(r.id) === rotaId);
+        state.rotaNome = rotaOpt ? rotaOpt.nome : "Rota #" + rotaId;
+
         const inpData = document.getElementById("wiz-data");
         if (inpData) inpData.value = wizDataPadraoAmanha();
 
@@ -970,7 +988,7 @@
           .forEach((v) => {
             const o = document.createElement("option");
             o.value = v.id;
-            o.textContent = v.placa + " — " + (v.marca_modelo || "");
+            o.textContent = v.placa + " — " + (v.marca_modelo || v.descricao || "");
             selV.appendChild(o);
           });
         selM.innerHTML = "";
@@ -982,31 +1000,103 @@
             o.textContent = x.nome_completo;
             selM.appendChild(o);
           });
+
+        const tb = document.getElementById("wiz-pedidos-tbody");
+        if (tb) {
+          tb.innerHTML = "";
+          state.pedidosAll.forEach((p) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML =
+              `<td><input type="checkbox" class="wiz-ped-sel" value="${p.id}" checked aria-label="Incluir pedido ${lbEsc(p.numero_pedido)}"></td>` +
+              `<td>${lbEsc(p.numero_pedido)}</td><td>${lbEsc(p.nome_destinatario)}</td><td>${lbEsc(p.peso_total_kg)} kg</td>`;
+            tb.appendChild(tr);
+          });
+        }
+
+        document.getElementById("wiz-rota-nome").textContent = state.rotaNome;
+        document.getElementById("wiz-rota-qtd").textContent = String(state.pedidoIds.length);
+
         wizardStep(0);
         document.getElementById("modal-viagem-wizard").classList.add("is-open");
       });
     }
 
+    function wizPedidosSelecionados() {
+      const ids = [];
+      document.querySelectorAll(".wiz-ped-sel:checked").forEach((c) => ids.push(parseInt(c.value, 10)));
+      return ids;
+    }
+
+    function wizMontarResumo() {
+      const ids = wizPedidosSelecionados();
+      const pedidos = state.pedidosAll.filter((p) => ids.includes(p.id));
+      const peso = pedidos.reduce((s, p) => s + parseFloat(p.peso_total_kg || 0), 0);
+      const veicSel = document.getElementById("wiz-veiculo");
+      const motSel = document.getElementById("wiz-motorista");
+      const vTxt = veicSel?.selectedOptions?.[0]?.textContent || "—";
+      const mTxt = motSel?.selectedOptions?.[0]?.textContent || "—";
+      const box = document.getElementById("wiz-resumo");
+      if (!box) return;
+      box.innerHTML =
+        `<div class="lb-wizard-review-row"><strong>Rota</strong><span>${lbEsc(state.rotaNome)}</span></div>` +
+        `<div class="lb-wizard-review-row"><strong>Pedidos</strong><span>${ids.length} selecionado(s)</span></div>` +
+        `<div class="lb-wizard-review-row"><strong>Peso total</strong><span>${peso.toFixed(3)} kg</span></div>` +
+        `<div class="lb-wizard-review-row"><strong>Veículo</strong><span>${lbEsc(vTxt)}</span></div>` +
+        `<div class="lb-wizard-review-row"><strong>Motorista</strong><span>${lbEsc(mTxt)}</span></div>`;
+    }
+
+    const WIZ_LABELS = ["Rota", "Pedidos", "Veículo", "Motorista", "Revisão", "Confirmar"];
     let wStep = 0;
+
     function wizardStep(n) {
       wStep = n;
-      document.getElementById("wiz-pane-veiculo").style.display = n === 0 ? "block" : "none";
-      document.getElementById("wiz-pane-motorista").style.display = n === 1 ? "block" : "none";
-      document.getElementById("wiz-pane-confirm").style.display = n === 2 ? "block" : "none";
+      const panes = ["wiz-pane-rota", "wiz-pane-pedidos", "wiz-pane-veiculo", "wiz-pane-motorista", "wiz-pane-revisao", "wiz-pane-confirm"];
+      panes.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = i === n ? "block" : "none";
+      });
       document.getElementById("wiz-back").style.display = n === 0 ? "none" : "inline-flex";
-      document.getElementById("wiz-next").textContent = n === 2 ? "Confirmar" : "Avançar";
+      const nextBtn = document.getElementById("wiz-next");
+      nextBtn.innerHTML =
+        n === 5 ? '<i class="fa-solid fa-circle-check"></i> Confirmar viagem' : 'Avançar <i class="fa-solid fa-arrow-right"></i>';
+
+      const prog = document.getElementById("wiz-progress");
+      if (prog) {
+        prog.innerHTML = WIZ_LABELS.map((_, i) => {
+          let cls = "lb-wizard-progress__seg";
+          if (i < n) cls += " is-done";
+          if (i === n) cls += " is-current";
+          return `<div class="${cls}" title="${WIZ_LABELS[i]}"></div>`;
+        }).join("");
+      }
+      const lbl = document.getElementById("wiz-step-label");
+      if (lbl) lbl.textContent = `Etapa ${n + 1} de 6 — ${WIZ_LABELS[n]}`;
+
       const steps = document.getElementById("wiz-steps");
-      steps.innerHTML = ["Veículo", "Motorista", "Confirmação"]
-        .map((t, i) => `<span class="lb-step-chip ${i <= n ? "done" : ""}">${i + 1}. ${t}</span>`)
-        .join("");
+      if (steps) {
+        steps.innerHTML = WIZ_LABELS.map((t, i) => `<span class="lb-step-chip ${i <= n ? "done" : ""}">${i + 1}. ${t}</span>`).join("");
+      }
+
+      if (n === 0) {
+        document.getElementById("wiz-rota-qtd").textContent = String(state.pedidosAll?.length || 0);
+      }
+      if (n === 4) wizMontarResumo();
     }
 
     document.getElementById("wiz-back")?.addEventListener("click", () => wizardStep(Math.max(0, wStep - 1)));
     document.getElementById("wiz-next")?.addEventListener("click", async () => {
-      if (wStep < 2) {
+      if (wStep === 1) {
+        state.pedidoIds = wizPedidosSelecionados();
+        if (!state.pedidoIds.length) {
+          alert("Selecione ao menos um pedido.");
+          return;
+        }
+      }
+      if (wStep < 5) {
         wizardStep(wStep + 1);
         return;
       }
+      state.pedidoIds = wizPedidosSelecionados();
       const body = {
         rota_id: state.atualRota,
         pedido_ids: state.pedidoIds,
@@ -1018,8 +1108,11 @@
       };
       const r = await lbJson("/api/viagem/gerar", { method: "POST", body });
       if (r.ok) {
-        alert("Viagem " + r.viagem_id + " criada.");
+        if (window.LB_UX_TOAST) window.LB_UX_TOAST("Viagem #" + r.viagem_id + " criada com sucesso!");
+        else alert("Viagem " + r.viagem_id + " criada.");
         location.href = CFG.baseUrl + "/viagens/abertas";
+      } else if (r.message) {
+        alert(r.message);
       }
     });
   }
@@ -1040,12 +1133,18 @@
         tb.innerHTML = "";
         document.getElementById("v-itens-box").style.display = "block";
         document.getElementById("v-itens-list").style.display = "none";
+        const itemsPanel = document.getElementById("v-itens-box");
+        if (itemsPanel) itemsPanel.classList.add("is-collapsed");
         const itbClear = document.querySelector("#v-itens-list tbody");
         if (itbClear) itbClear.innerHTML = "";
+        let selectedPid = null;
         (d.pedidos || []).forEach((p) => {
           const tr = document.createElement("tr");
           tr.dataset.pid = String(p.pedido_id || p.id);
-          tr.style.cursor = "pointer";
+          tr.className = "lb-row-clickable";
+          tr.setAttribute("role", "button");
+          tr.setAttribute("tabindex", "0");
+          tr.setAttribute("aria-expanded", "false");
           const cidadeUf = [p.bairro, p.cidade, p.uf].filter(Boolean).join(" · ");
           const stClass =
             (p.parada_estado === "entrega_feita" && "rgba(34,197,94,.2)") ||
@@ -1053,16 +1152,23 @@
             (p.parada_estado === "divergencia_aguardando" && "rgba(251,146,60,.22)") ||
             "transparent";
           tr.innerHTML =
-            `<td>${lbEsc(p.ordem_entrega)}</td>` +
+            `<td><i class="fa-solid fa-chevron-right lb-row-chev" style="opacity:.45;font-size:.7rem;margin-right:4px"></i>${lbEsc(p.ordem_entrega)}</td>` +
             `<td><strong>${lbEsc(p.numero_pedido)}</strong></td>` +
             `<td>${lbEsc(p.nome_destinatario)}</td>` +
             `<td><span style="display:inline-block;padding:4px 8px;border-radius:999px;font-size:.74rem;font-weight:650;background:${stClass};border:1px solid rgba(0,0,0,.06)">${lbParadaEstadoLabel(p.parada_estado)}</span></td>` +
             `<td>${lbFmtTs(p.parada_indo_em)}</td>` +
             `<td>${lbFmtTs(p.parada_entregue_em)}</td>` +
             `<td>${lbEsc(cidadeUf || "—")}</td>`;
-          tr.addEventListener("click", async () => {
-            const pid = parseInt(tr.dataset.pid, 10);
-            const ti = await lbJson("/api/pedido/" + pid + "/itens");
+
+          async function selecionarLinha() {
+            tb.querySelectorAll("tr.lb-row-selected").forEach((r) => {
+              r.classList.remove("lb-row-selected");
+              r.setAttribute("aria-expanded", "false");
+            });
+            tr.classList.add("lb-row-selected");
+            tr.setAttribute("aria-expanded", "true");
+            selectedPid = parseInt(tr.dataset.pid, 10);
+            const ti = await lbJson("/api/pedido/" + selectedPid + "/itens");
             const itb = document.querySelector("#v-itens-list tbody");
             itb.innerHTML = "";
             (ti.itens || []).forEach((it) => {
@@ -1071,7 +1177,20 @@
                 `<td>${lbEsc(it.descricao)}</td><td>${lbEsc(it.quantidade)}</td><td>${lbEsc(it.peso_unit_kg ?? "")}</td>`;
               itb.appendChild(r);
             });
-            document.getElementById("v-itens-list").style.display = "block";
+            const panel = document.getElementById("v-itens-box");
+            const list = document.getElementById("v-itens-list");
+            if (panel) panel.classList.remove("is-collapsed");
+            if (list) list.style.display = "block";
+            const headLabel = document.getElementById("v-itens-head-label");
+            if (headLabel) headLabel.textContent = "Itens — NF " + lbEsc(p.numero_pedido);
+          }
+
+          tr.addEventListener("click", selecionarLinha);
+          tr.addEventListener("keydown", (ev) => {
+            if (ev.key === "Enter" || ev.key === " ") {
+              ev.preventDefault();
+              selecionarLinha();
+            }
           });
           tb.appendChild(tr);
         });

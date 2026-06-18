@@ -125,9 +125,20 @@ final class AuthController extends Controller
         if (($e->getMessage() === 'CONNECT' || str_contains(strtolower((string) $e->getMessage()), 'placeholder'))
             && (str_contains($lowPdo, 'could not translate host name')
                 || str_contains($lowPdo, 'unknown host'))) {
-            $dnsHint = "\n\nCausa comum no LogBrasil: DB_HOST no .env ainda está com texto de exemplo (placeholder). ";
-            $dnsHint .= 'Substitua por um hostname real tipo db.abcdefghij.supabase.co (painel Supabase → Configurações do projeto '
-                . '→ Database → Host / Connection parameters).';
+            $hostEnv = trim((string) ($_ENV['DB_HOST'] ?? ''));
+            $pareceSupabaseReal = str_contains(strtolower($hostEnv), '.supabase.co')
+                && ! str_contains(strtolower($hostEnv), 'cole_aqui')
+                && ! str_contains(strtolower($hostEnv), 'seu_project_ref');
+            if ($pareceSupabaseReal) {
+                $dnsHint = "\n\nO host configurado ({$hostEnv}) não existe na internet (DNS falhou). ";
+                $dnsHint .= 'Isso costuma indicar: projeto Supabase excluído ou pausado há muito tempo, Reference ID errado, ';
+                $dnsHint .= 'ou host copiado de outro ambiente. Abra supabase.com → seu projeto → Settings → Database ';
+                $dnsHint .= 'e copie de novo Host, senha e (se usar) pooler. Se não houver projeto, crie um e rode database/schema.sql.';
+            } else {
+                $dnsHint = "\n\nCausa comum no LogBrasil: DB_HOST no .env ainda está com texto de exemplo (placeholder). ";
+                $dnsHint .= 'Substitua por um hostname real tipo db.abcdefghij.supabase.co (painel Supabase → Configurações do projeto '
+                    . '→ Database → Host / Connection parameters).';
+            }
         }
 
         $blocoTipo = match ($e->getMessage()) {

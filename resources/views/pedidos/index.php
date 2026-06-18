@@ -7,11 +7,24 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
     'sort' => $col,
     'dir' => (($ordCampo === $col) && ($dir ?? 'ASC') === 'ASC') ? 'DESC' : 'ASC',
 ]));
+$estadosAmig = [
+    'pendente_roterizador' => ['Pendente planejamento', 'lb-status--pendente'],
+    'alocado_rota' => ['Alocado na rota', 'lb-status--rota'],
+    'em_viagem' => ['Em viagem', 'lb-status--viagem'],
+    'entregue' => ['Entregue', 'lb-status--ok'],
+    'cancelado' => ['Cancelado', 'lb-status--cancel'],
+];
+$help = static fn (string $t): string => '<span class="lb-help" tabindex="0" role="button" aria-label="Ajuda" data-lb-tip="' . Helpers::e($t) . '">?</span>';
 ?>
 <section class="lb-page-heading">
     <h1><?= Helpers::e($title) ?></h1>
-    <span class="lb-muted">Cadastro detalhado com itens, destinatário e geocodificação automática.</span>
+    <span class="lb-muted">Pedidos de entrega — o cadastro do cliente é feito pelo CPF do destinatário.</span>
 </section>
+
+<div class="lb-page-tip">
+    <i class="fa-solid fa-user-group"></i>
+    <div><strong>Clientes:</strong> informe o CPF no formulário de pedido. Endereço e coordenadas ficam salvos para reutilizar nos próximos pedidos do mesmo cliente. <?= $help('Não há tela separada de clientes: o vínculo é automático pelo CPF.') ?></div>
+</div>
 
 <div class="lb-toolbar-cadastro">
     <div class="lb-grow">
@@ -19,8 +32,8 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
             <input type="search" class="lb-input" name="q" placeholder="Buscar número, destinatário, CPF ou cidade" value="<?= Helpers::e((string) $filtro['q']) ?>" style="max-width:320px">
             <select class="lb-input" name="estado" style="max-width:200px">
                 <option value="">Todos estados do pedido</option>
-                <?php foreach (['pendente_roterizador'=>'Pendente roteirização','alocado_rota'=>'Na rota (base)','em_viagem'=>'Em viagem','entregue'=>'Entregue','cancelado'=>'Cancelado'] as $ev=>$lbl): ?>
-                    <option value="<?= Helpers::e($ev) ?>" <?= $filtro['estado']===$ev?'selected':'' ?>><?= Helpers::e($lbl) ?></option>
+                <?php foreach ($estadosAmig as $ev => $lbl): ?>
+                    <option value="<?= Helpers::e($ev) ?>" <?= $filtro['estado']===$ev?'selected':'' ?>><?= Helpers::e($lbl[0]) ?></option>
                 <?php endforeach; ?>
             </select>
             <select class="lb-input" name="rota_id" style="max-width:240px">
@@ -74,7 +87,8 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
                 <td><?= Helpers::e($row['cidade']) ?>/<?= Helpers::e($row['uf']) ?></td>
                 <td><?= Helpers::e($row['rota_nome'] ?? '—') ?></td>
                 <td><?= Helpers::e((string) $row['peso_total_kg']) ?></td>
-                <td><span class="lb-tag-pill"><?= Helpers::e($row['estado']) ?></span></td>
+                <td><?php $e = (string)$row['estado']; $ea = $estadosAmig[$e] ?? [$e, '']; ?>
+                    <span class="lb-status <?= Helpers::e($ea[1]) ?>"><?= Helpers::e($ea[0]) ?></span></td>
                 <td>
                     <button type="button" class="lb-btn lb-btn-quiet lb-open-modal-pedido" data-mode="edit"><i class="fa-solid fa-pen"></i></button>
                     <button type="button" class="lb-btn lb-btn-quiet lb-del-pedido" data-id="<?= (int) $row['id'] ?>"><i class="fa-solid fa-trash"></i></button>
@@ -94,12 +108,30 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
         <div class="lb-modal-body">
             <form id="form-pedido">
                 <input type="hidden" name="id" id="pedido-id">
+
+                <details class="lb-advanced-panel" style="margin-bottom:14px;border-style:solid">
+                    <summary><i class="fa-solid fa-circle-question"></i> Ajuda — o que significa cada campo</summary>
+                    <div class="lb-advanced-panel__body" style="font-size:.84rem;line-height:1.55;color:var(--lb-muted)">
+                        <ul style="margin:0;padding-left:18px">
+                            <li><strong style="color:var(--lb-high)">Número</strong> — número identificador interno do cliente (ex.: NF, ordem ou código que a empresa usa para localizar o pedido).</li>
+                            <li><strong style="color:var(--lb-high)">Situação</strong> — etapa do pedido no fluxo (planejamento, viagem, entregue etc.).</li>
+                            <li><strong style="color:var(--lb-high)">CPF destinatário</strong> — cadastra ou reutiliza o cliente; endereço fica salvo para próximos pedidos.</li>
+                            <li><strong style="color:var(--lb-high)">Número (endereço)</strong> — número da casa ou prédio no logradouro (não confundir com o número do pedido).</li>
+                            <li><strong style="color:var(--lb-high)">Rota</strong> — área de entrega; pode ser sugerida automaticamente pelo endereço.</li>
+                            <li><strong style="color:var(--lb-high)">Coordenadas (avançado)</strong> — posição no mapa; use o botão automático após preencher o endereço.</li>
+                        </ul>
+                    </div>
+                </details>
+
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-                    <div><label class="lb-muted">Número</label><input class="lb-input" name="numero_pedido" required></div>
-                    <div><label class="lb-muted">Estado pedido</label>
+                    <div>
+                        <label class="lb-field-label">Número <?= $help('Número identificador interno do cliente — ex.: nota fiscal, ordem de compra ou código usado pela sua operação para localizar este pedido.') ?></label>
+                        <input class="lb-input" name="numero_pedido" required placeholder="Ex.: NF-2026-00482">
+                    </div>
+                    <div><label class="lb-field-label">Situação do pedido</label>
                         <select class="lb-input" name="estado">
-                            <?php foreach (['pendente_roterizador','alocado_rota','em_viagem','entregue','cancelado'] as $ev): ?>
-                                <option value="<?= $ev ?>"><?= $ev ?></option>
+                            <?php foreach ($estadosAmig as $ev => $lbl): ?>
+                                <option value="<?= $ev ?>"><?= Helpers::e($lbl[0]) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -124,7 +156,7 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
 
                 <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-top:10px">
                     <div><label class="lb-muted">Logradouro</label><input class="lb-input" name="logradouro" required id="pedido-logradouro"></div>
-                    <div><label class="lb-muted">Número</label><input class="lb-input" name="numero" id="pedido-numero"></div>
+                    <div><label class="lb-field-label">Número do endereço <?= $help('Número da residência ou estabelecimento no logradouro — diferente do número identificador do pedido acima.') ?></label><input class="lb-input" name="numero" id="pedido-numero" placeholder="Ex.: 120 ou S/N"></div>
                 </div>
                 <label class="lb-muted" style="margin-top:10px;display:block">Complemento</label>
                 <input class="lb-input" name="complemento" id="pedido-complemento">
@@ -150,13 +182,29 @@ $mkSort = fn (string $col) => CONF_BASE_URL . '/pedidos?' . http_build_query(arr
                 </div>
 
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px;align-items:end">
-                    <div><label class="lb-muted">Latitude</label><input class="lb-input" name="latitude" id="pedido-lat" placeholder="Opcional"></div>
-                    <div><label class="lb-muted">Longitude</label><input class="lb-input" name="longitude" id="pedido-lng" placeholder="Opcional"></div>
-                    <button type="button" class="lb-btn lb-btn-quiet lb-buscar-geo"><i class="fa-solid fa-map-pin"></i> Buscar coordenadas</button>
-                    <div><label class="lb-muted">Qtd entregas</label><input class="lb-input" name="quantidade_entregas" type="number" min="1" value="1"></div>
-                    <div><label class="lb-muted">Peso total (kg)</label><input class="lb-input" name="peso_total_kg" type="number" step="0.001"></div>
+                    <div><label class="lb-field-label">Qtd. entregas (NF)</label><input class="lb-input" name="quantidade_entregas" type="number" min="1" value="1" placeholder="1"></div>
+                    <div><label class="lb-field-label">Peso total (kg)</label><input class="lb-input" name="peso_total_kg" type="number" step="0.001" placeholder="Ex.: 125.500"></div>
                 </div>
-                <label class="lb-muted" style="margin-top:10px;display:block">Obs.</label><textarea class="lb-input" name="observacao_interna" rows="2"></textarea>
+
+                <details class="lb-advanced-panel">
+                    <summary><i class="fa-solid fa-location-crosshairs"></i> Coordenadas geográficas (avançado) <?= $help('Usadas no mapa e na roteirização. Normalmente preenchidas automaticamente pelo endereço.') ?></summary>
+                    <div class="lb-advanced-panel__body">
+                        <p class="lb-field-hint">Latitude e longitude permitem posicionar o pedido no mapa e calcular distâncias. Use o botão abaixo após preencher o endereço — não é necessário digitar manualmente na maioria dos casos.</p>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+                            <div>
+                                <label class="lb-field-label">Latitude <?= $help('Norte/sul em graus decimais. Ex.: -23.55052') ?></label>
+                                <input class="lb-input" name="latitude" id="pedido-lat" placeholder="Preenchido automaticamente" readonly>
+                            </div>
+                            <div>
+                                <label class="lb-field-label">Longitude <?= $help('Leste/oeste. Ex.: -46.63331') ?></label>
+                                <input class="lb-input" name="longitude" id="pedido-lng" placeholder="Preenchido automaticamente" readonly>
+                            </div>
+                        </div>
+                        <button type="button" class="lb-btn lb-btn-secondary lb-buscar-geo" style="margin-top:10px"><i class="fa-solid fa-wand-magic-sparkles"></i> Obter coordenadas pelo endereço</button>
+                    </div>
+                </details>
+
+                <label class="lb-field-label" style="margin-top:10px">Observação interna</label><textarea class="lb-input" name="observacao_interna" rows="2"></textarea>
 
                 <h4 style="margin:16px 0 8px;color:var(--lb-secondary-yellow)"><i class="fa-solid fa-list"></i> Itens da carga</h4>
                 <div id="itens-dynamic"></div>

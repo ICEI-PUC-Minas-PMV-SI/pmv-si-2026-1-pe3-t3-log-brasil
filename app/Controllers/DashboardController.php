@@ -36,6 +36,12 @@ final class DashboardController extends Controller
         $veiculosOk = count(array_filter(Veiculo::listarTodos(), fn ($v) => (bool) $v['ativo']));
         $motoristasOk = count(array_filter(Motorista::listarTodos(), fn ($m) => (bool) $m['ativo']));
 
+        $divPend = (int) $pdo->query(
+            "SELECT COUNT(*) FROM divergencias_entrega WHERE revisao_estado='pendente_aprovacao'"
+        )->fetchColumn();
+
+        $emViagem = (int) $pdo->query("SELECT COUNT(*) FROM pedidos WHERE estado='em_viagem'")->fetchColumn();
+
         View::render('dashboard/index', [
             'nav' => 'inicio',
             'title' => 'Painel LogBrasil',
@@ -44,6 +50,10 @@ final class DashboardController extends Controller
             'finalizadas' => $finalizadas,
             'veiculosOk' => $veiculosOk,
             'motoristasOk' => $motoristasOk,
+            'divPend' => $divPend,
+            'emViagem' => $emViagem,
+            'linksCadastro' => in_array($p, ['admin', 'gestor', 'roteirizador'], true),
+            'linksRevDiv' => in_array($p, ['admin', 'gestor', 'monitoramento'], true),
         ]);
     }
 }

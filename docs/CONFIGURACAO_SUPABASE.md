@@ -146,6 +146,15 @@ Erros como **“could not find driver”** / **“não foi possível encontrar o
 - Supabase hospeda o Postgres na nuvem; a máquina local precisa de **saída HTTPS/TCP** para a porta configurada (**5432** ou **6543**).
 - Redes corporativas às vezes bloqueiam; testar outra rede ou VPN conforme política da empresa.
 
+### 8.1 “Unknown host” / “could not translate host name”
+
+Se a mensagem PDO cita **`Unknown host`** para um host como `db.xxxxx.supabase.co`:
+
+1. No Windows, teste: `nslookup db.SEU_REF.supabase.co` — se retornar **Non-existent domain**, o hostname **não existe** (projeto apagado, pausado além do limite, ou Reference ID errado).
+2. Entre em [supabase.com/dashboard](https://supabase.com/dashboard) e confirme que o **projeto aparece** e não está “Paused” de forma irreversível.
+3. **Settings → Database → Connection parameters** → copie de novo **Host** e redefina a senha se necessário.
+4. Se não houver projeto: **New project** → execute `database/schema.sql` → crie usuário com `scripts/gerar_usuario_cli.php`.
+
 ---
 
 ## 9. Mensagem genérica na tela de login

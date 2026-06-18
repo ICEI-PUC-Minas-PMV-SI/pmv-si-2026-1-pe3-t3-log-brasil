@@ -10,9 +10,16 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
     <span class="lb-muted">Histórico apenas leitura: mapas e cargas já encerradas.</span>
 </section>
 
-<div class="lb-grid-metrics" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+<div class="lb-toolbar-cadastro" style="margin-bottom:14px">
+    <div class="lb-quick-search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="search" class="lb-input" placeholder="Buscar rota, motorista ou nº da viagem…" data-lb-grid-search="#v-finalizadas-grid" aria-label="Buscar viagens finalizadas">
+    </div>
+</div>
+
+<div class="lb-grid-metrics" id="v-finalizadas-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
     <?php foreach ($lista ?? [] as $v): ?>
-        <div class="lb-card" style="border-left:3px solid var(--lb-primary);opacity:.95">
+        <div class="lb-card lb-route-card" data-viagem="<?= (int) $v['id'] ?>" style="border-left:3px solid var(--lb-primary);opacity:.95">
             <div class="lb-chip">#<?= Helpers::e((string)$v['id']) ?></div>
             <h3 style="margin:6px 0 0;font-size:1rem"><?= Helpers::e($v['rota_nome']) ?></h3>
             <p class="lb-muted" style="margin:8px 0 0;font-size:.82rem;line-height:1.45">

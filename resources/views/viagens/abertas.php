@@ -7,10 +7,21 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
 ?>
 <section class="lb-page-heading">
     <h1><?= Helpers::e($title) ?></h1>
-    <span class="lb-muted">Viagens abertas: ações de mapa, itens dos pedidos, divergências e encerramento.</span>
+    <span class="lb-muted">Viagens abertas: acompanhe status das paradas e encerramento.</span>
 </section>
 
+<div class="lb-page-tip">
+    <i class="fa-solid fa-mobile-screen"></i>
+    <div>O motorista atualiza cada parada no app (<strong>Indo</strong> → comprovante ou ocorrência). Esta tela reflete o status em tempo quase real.
+        <a href="<?= Helpers::e(CONF_BASE_URL . '/motorista/login') ?>" style="color:var(--lb-secondary-yellow);margin-left:6px">Abrir app motorista</a>
+    </div>
+</div>
+
 <div class="lb-toolbar-cadastro" style="margin-bottom:18px">
+    <div class="lb-quick-search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="search" class="lb-input" id="v-abertas-search" placeholder="Buscar viagem, rota, motorista ou placa…" data-lb-grid-search="#v-abertas-grid" aria-label="Buscar viagens">
+    </div>
     <div class="lb-card" style="padding:10px 12px;display:flex;align-items:center;gap:10px;flex:1;min-width:280px;max-width:560px">
         <i class="fa-solid fa-mobile-screen-button" style="color:var(--lb-secondary-yellow)" title="App motorista"></i>
         <div style="min-width:0;flex:1">
@@ -21,7 +32,7 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
     </div>
 </div>
 
-<div class="lb-grid-metrics" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+<div class="lb-grid-metrics" id="v-abertas-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
     <?php foreach ($lista ?? [] as $v): ?>
         <div class="lb-card lb-route-card" data-viagem="<?= (int)$v['id'] ?>">
             <div class="lb-route-card-top">
@@ -63,7 +74,7 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
                 <div><strong>Peso</strong><br><?= Helpers::e((string)$v['peso_total_kg']) ?> kg</div>
                 <div><strong>Entregas</strong><br><?= Helpers::e((string)$v['qt_entregas']) ?></div>
                 <div style="grid-column:1/-1"><strong>Largada prevista</strong><br><?= Helpers::e($v['data_largada_prevista'] ?? '—') ?></div>
-                <div style="grid-column:1/-1"><strong>Lead</strong><br><?= Helpers::e($v['lead_planejado_texto'] ?? '—') ?></div>
+                <div style="grid-column:1/-1"><strong>Tempo planejado</strong><br><?= Helpers::e($v['lead_planejado_texto'] ?? '—') ?></div>
             </div>
             <div class="lb-route-actions">
                 <button type="button" class="lb-btn lb-btn-quiet lb-v-detalhes" data-id="<?= (int)$v['id'] ?>"><i class="fa-solid fa-list"></i> Detalhes</button>
@@ -85,9 +96,7 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
             <button type="button" class="lb-btn lb-btn-quiet lb-modal-close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="lb-modal-body">
-            <p class="lb-muted" style="margin:0 0 10px;font-size:.82rem;line-height:1.45">
-                Situação de cada pedido conforme atualização pelo app motorista. Use uma linha para ver os itens da NF no bloco inferior.
-            </p>
+            <p class="lb-expand-hint"><i class="fa-solid fa-hand-pointer"></i> Clique em uma linha da tabela para ver os itens do pedido (linha destacada em verde).</p>
             <div class="lb-table-shell" style="overflow-x:auto">
                 <table class="lb-table" style="min-width:880px">
                     <thead><tr>
@@ -102,9 +111,14 @@ $headExtra = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/
                     <tbody id="v-det-body"></tbody>
                 </table>
             </div>
-            <div id="v-itens-box" style="margin-top:12px;display:none">
-                <button type="button" class="lb-btn lb-btn-quiet" id="v-itens-toggle"><i class="fa-solid fa-cubes"></i> Itens do pedido selecionado</button>
-                <div id="v-itens-list" style="margin-top:8px" class="lb-table-shell"><table class="lb-table"><tbody></tbody></table></div>
+            <div id="v-itens-box" class="lb-items-panel is-collapsed" style="display:none">
+                <div class="lb-items-panel__head" role="button" tabindex="0" aria-expanded="false">
+                    <span id="v-itens-head-label"><i class="fa-solid fa-cubes"></i> Itens do pedido selecionado</span>
+                    <i class="fa-solid fa-chevron-down lb-chevron" aria-hidden="true"></i>
+                </div>
+                <div class="lb-items-panel__body">
+                    <div id="v-itens-list" class="lb-table-shell"><table class="lb-table"><thead><tr><th>Descrição</th><th>Qtd</th><th>Peso un.</th></tr></thead><tbody></tbody></table></div>
+                </div>
             </div>
         </div>
     </div>

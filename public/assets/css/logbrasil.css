@@ -255,8 +255,27 @@ table.lb-table tbody td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-table.lb-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.03);
+.lb-btn-primary:hover {
+  filter: brightness(1.12);
+}
+
+.lb-btn-secondary:hover {
+  filter: brightness(1.08);
+}
+
+.lb-btn-accent:hover {
+  filter: brightness(1.05);
+}
+
+.lb-btn-quiet:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+table.lb-table tbody tr.lb-row-selected .lb-row-chev {
+  transform: rotate(90deg);
+  opacity: 1 !important;
+  color: var(--lb-secondary-green);
 }
 
 .lb-tag-pill {
