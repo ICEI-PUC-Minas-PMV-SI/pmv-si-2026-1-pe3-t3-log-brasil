@@ -91,8 +91,6 @@
 
 **Protótipo no Figma:** [Acessar Protótipo](https://www.figma.com/proto/ZtMJLq3T0wDqDu3yejMoKu/Prot%C3%B3tipo-LogBrasil?node-id=0-1&t=R490sqlATvQPWaCT-1)
 
-
-
 ## 4.4 Testes com Protótipos
 Relatório de Testes:
 [Relatorios_de_Testes_Com_Usuario.zip](https://github.com/user-attachments/files/28690500/Relatorios_de_Testes_Com_Usuario.zip)

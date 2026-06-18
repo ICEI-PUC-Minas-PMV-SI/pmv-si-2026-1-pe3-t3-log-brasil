@@ -1,6 +1,5 @@
 # 5. PLANO DE TESTES DE SOFTWARE
    
-
 Relatório de testes:
 
 [Relatorios de Testes com Usuario (1).zip](https://github.com/user-attachments/files/28687582/Relatorios.de.Testes.com.Usuario.1.zip)
