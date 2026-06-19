@@ -1,4 +1,4 @@
-# Título do Projeto
+# Log Brasil
 
 `CURSO: Sistemas de Informação`
 
@@ -12,6 +12,7 @@ A plataforma permitirá cadastro de clientes, pedidos, motoristas e veículos, a
 
 O sistema contará com controle de status, roteirização, registro de ocorrências e relatórios gerenciais para apoio à decisão.
 O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência do cliente nas operações de transporte.
+
 ## Integrantes
 
 * Aleph de Oliveira Barros
@@ -25,21 +26,20 @@ O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência d
 
 * Maria Ines Lage de Paula
 
-# Planejamento
+## Planejamento
 
-| Etapa         | Atividades |
-|  :----:   | ----------- |
-| ETAPA 1         |[Introdução](docs/introducao.md) <br> [Estado da Arte](docs/estado.md) <br> [Referências](docs/referencias.md) |
-| ETAPA 2         |[Especificação de Requisitos de Software](docs/especificacao.md) |
-| ETAPA 3         |[Design de Interação](docs/design.md) |
-| ETAPA 4        |[Testes de Software](docs/testes.md) |
-| ETAPA 5         | [Apresentação](docs/apresentacao.md) |
+| Etapa | Atividades |
+| :---: | ----------- |
+| ETAPA 1 | [Introdução](docs/introducao.md) · [Estado da Arte](docs/estado.md) · [Referências](docs/referencias.md) |
+| ETAPA 2 | [Especificação de Requisitos de Software](docs/especificacao.md) |
+| ETAPA 3 | [Design de Interação](docs/design.md) |
+| ETAPA 4 | [Testes de Software](docs/testes.md) |
+| ETAPA 5 | [Apresentação](docs/apresentacao.md) |
 
+## Código
 
-# Código
+[Código-fonte](src/codigo.md)
 
-<li><a href="src/codigo.md"> Código Fonte</a></li>
+## Apresentação
 
-# Apresentação
-
-<li><a href="docs/apresentacao.md"> Apresentação da solução</a></li>
+[Apresentação da solução](docs/apresentacao.md)
