@@ -19,7 +19,7 @@ Disponibilizar o código-fonte da aplicação.
 3. Habilitar `pdo_pgsql` no PHP (XAMPP) e apontar o navegador para `http://localhost/LogBrasil/public`.
 4. Criar o primeiro usuário com `php scripts/gerar_usuario_cli.php` e executar o SQL gerado no Supabase.
 
-## RF08 — Migration obrigatória
+## Migration obrigatória
 
 Executar no SQL Editor do Supabase:
 
