@@ -386,10 +386,7 @@ final class PedidoController extends Controller
         Helpers::jsonResponse(['ok' => true]);
     }
 
-    /**
-     * @param array<string, mixed> $src
-     * @return array{logradouro:string,numero:string,complemento:string,bairro:string,cidade:string,uf:string}
-     */
+    
     private static function payloadPartesParaGeocode(array $src): array
     {
         return [
