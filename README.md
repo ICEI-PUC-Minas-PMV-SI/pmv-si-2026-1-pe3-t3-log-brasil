@@ -34,7 +34,7 @@ O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência d
 | ETAPA 2 | [Especificação de Requisitos de Software](docs/especificacao.md) |
 | ETAPA 3 | [Design de Interação](docs/design.md) |
 | ETAPA 4 | [Testes de Software](docs/testes.md) |
-| ETAPA 5 | [Apresentação](docs/Apresentação Final.pdf) |
+| ETAPA 5 | [Apresentação](docs/Apresentação_Final.pdf) |
 
 ## Código
 
@@ -42,4 +42,4 @@ O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência d
 
 
 ## Apresentação
-[Apresentação da solução](docs/Apresentação Final.pdf)
+[Apresentação da solução](docs/Apresentação_Final.pdf)
