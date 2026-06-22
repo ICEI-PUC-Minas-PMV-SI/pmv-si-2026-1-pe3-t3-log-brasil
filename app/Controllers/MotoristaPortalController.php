@@ -12,7 +12,7 @@ use App\Models\Pedido;
 use App\Models\Viagem;
 
 /**
- * App do motorista: sessão separada ({@see $_SESSION['motorista_app']}).
+ * App do motorista: sessão separada.
  */
 final class MotoristaPortalController extends Controller
 {
