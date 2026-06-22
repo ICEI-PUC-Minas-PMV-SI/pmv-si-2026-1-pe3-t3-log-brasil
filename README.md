@@ -32,14 +32,14 @@ O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência d
 | :---: | ----------- |
 | ETAPA 1 | [Introdução](docs/introducao.md) · [Estado da Arte](docs/estado.md) · [Referências](docs/referencias.md) |
 | ETAPA 2 | [Especificação de Requisitos de Software](docs/especificacao.md) |
-| ETAPA 3 | [Design de Interação](docs/design.md) |
+## Apresentação| ETAPA 3 | [Design de Interação](docs/design.md) |
 | ETAPA 4 | [Testes de Software](docs/testes.md) |
-| ETAPA 5 | [Apresentação](docs/apresentacao.md) |
+| ETAPA 5 | [Apresentação](docs/Apresentação Final.pdf) |
 
 ## Código
 
 [Código-fonte](src/codigo.md)
 
-## Apresentação
+
 
 [Apresentação da solução](docs/Apresentação Final.pdf)
