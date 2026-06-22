@@ -16,7 +16,6 @@ use App\Models\Viagem;
  */
 final class MotoristaPortalController extends Controller
 {
-    /** @param array<string,mixed> $m */
     private static function sanitizeMotorista(array $m): array
     {
         unset($m['senha_hash']);
@@ -36,14 +35,12 @@ final class MotoristaPortalController extends Controller
         return false;
     }
 
-    /** @return array<string, mixed> */
     private function requireMotoristaSessao(): array
     {
         if (empty($_SESSION['motorista_app']) || empty($_SESSION['motorista_app']['id'])) {
             Helpers::redirect('/motorista/login');
             exit;
         }
-        /** @var array<string,mixed> $m */
         $m = Motorista::encontrar((int) $_SESSION['motorista_app']['id']);
         if ($m === null || ! self::isPgAtivo($m['ativo'] ?? null)) {
             unset($_SESSION['motorista_app']);
