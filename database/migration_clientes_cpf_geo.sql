@@ -1,5 +1,4 @@
 -- LogBrasil: clientes cadastrados por CPF + geo no cliente; vínculo com pedidos.
--- Execute no Postgres/Supabase (SQL Editor). Idempotente onde possível.
 
 CREATE TABLE IF NOT EXISTS public.clientes (
     id                  BIGSERIAL PRIMARY KEY,
