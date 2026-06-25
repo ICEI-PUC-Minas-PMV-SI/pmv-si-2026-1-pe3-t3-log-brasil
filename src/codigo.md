@@ -1,7 +1,5 @@
 # 7. Código-fonte — Log Brasil
 
-Disponibilizar o código-fonte da aplicação.
-
 ## Estrutura principal
 
 | Pasta | Conteúdo |

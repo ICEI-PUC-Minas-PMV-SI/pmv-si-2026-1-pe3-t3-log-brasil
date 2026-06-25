@@ -1,6 +1,6 @@
 # 6. Apresentação do Projeto
 
-[Apresentação Final](apresentacao/apresentacao_final.pdf)
+[Apresentação Final Slides](apresentacao/apresentacao_final.pdf)
 
 ## Vídeo de apresentação
 
