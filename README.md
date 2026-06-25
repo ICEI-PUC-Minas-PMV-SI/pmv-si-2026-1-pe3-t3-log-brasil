@@ -43,4 +43,5 @@ O objetivo é aumentar a eficiência, reduzir custos e melhorar a experiência d
 
 ## Apresentação
 [Apresentação da solução](docs/apresentacao/apresentacao_final.pdf)
+
 [Vídeo de apresentação](docs/apresentacao/video.mp4)
