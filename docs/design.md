@@ -93,10 +93,10 @@
 
 ## 4.4 Testes com Protótipos
 Relatório de Testes:
-[Relatorios_de_Testes_Com_Usuario.zip](https://github.com/user-attachments/files/28690500/Relatorios_de_Testes_Com_Usuario.zip)
+[Relatorios de Testes Com Usuário](https://github.com/user-attachments/files/28690500/Relatorios_de_Testes_Com_Usuario.zip)
 
 Avaliação heurística:
-[Avaliacao_Heuristica_Completa.xlsx](https://github.com/user-attachments/files/28690512/Avaliacao_Heuristica_Completa.xlsx)
+[Avaliacao Heuristica Completa](https://github.com/user-attachments/files/28690512/Avaliacao_Heuristica_Completa.xlsx)
 
 
 
